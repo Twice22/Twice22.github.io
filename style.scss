@@ -25,7 +25,7 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 920px;
   padding: 0 10px;
   width: 100%;
 }
@@ -252,6 +252,8 @@ nav {
 }
 
 .post {
+  text-align: justify;
+
   blockquote {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
@@ -287,3 +289,36 @@ footer {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
+
+/*
+##################
+### MY STYLE #####
+##################
+*/
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.color-box {
+	background-color: #ecf0f1;
+	border: 2px solid #7f8c8d;
+	border-radius: 2px;
+}
+
+.text-80 {
+	font-size: 80%;
+}
+
+.centered-img {
+	text-align: center;
+}
+
+.img-16 {
+	height: 16px;
+}
