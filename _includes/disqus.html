@@ -1,5 +1,4 @@
-{% if site.disqus %}
-<div class="comments">
+{% if page.comments %}
 <div id="disqus_thread"></div>
 <script>
     /**
@@ -8,7 +7,7 @@
      */
     
     var disqus_config = function () {
-        this.page.url = "http://twice22.github.io";
+        this.page.url = "http://twice22.github.io{{ page.url }}";
         this.page.identifier = "{{ page.id }}";
     };
     

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Hinge Loss Gradient Computation
-comments: true
 ---
 
 When I started to follow *CS231n* course from Stanford as a self-taught person, I was a bit irritated that
