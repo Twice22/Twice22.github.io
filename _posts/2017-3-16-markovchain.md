@@ -218,4 +218,5 @@ $$P(X_{t+1}, S_{t+1}|e_{1:t+1})$$
 $$ = \alpha P(e_{t+1}|X_{t+1}, S_{t+1})\sum\limits_{s_t=1}^k P(S_{t+1}|s_t)P(s_t|e_{1:t}) \int_{x_t} P(X_{t+1}|x_t, s_t)P(x_t|e_{1:t})dx_t$$
 Using the hypotheses of the question and the properties of integral and sum of Gaussians, we can conclude that we have $km$ Gaussians.
 </div>
+[![alt pdf](/images/pdf.png "Pdf  version"){: .img-16} Exercices on Markov Chain](../pdf/markov_ex.pdf "Exercices on Markov Chain")
 <br><br>

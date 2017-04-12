@@ -187,5 +187,7 @@ Don't forget to divide by the number of training samples and to add the regulari
 
 ## Conclusion
 Finally we saw how we can compute the gradient of the hinge loss function. This wasn't difficult. The main issue we can encounter when we are asking to compute such gradient resides in the formulation of the problem. What we need to compute ? The gradient w.r.t which variables ? What are the size of the variables involve in such a computation ? It is important to define the problem precisely, the rest will follow naturally if you already know what it means to compute a gradient. Finally we see that it can be usefull to write down the matrix or even to write formula without the summation symbol to help us visualize the problem.
+<br>
 
-[![alt pdf](/images/pdf.png "Pdf  version"){: .img-16} Hinge loss gradient computation](../pdf/gradient_svm.pdf "Hinge loss gradient computation")
+[![alt pdf](/images/pdf.png "Pdf  version"){: .img-16} Gradient of the Hinge Loss](../pdf/gradient_svm.pdf "Gradient of the Hinge Loss")
+<br><br>
