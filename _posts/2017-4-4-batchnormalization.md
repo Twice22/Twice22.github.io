@@ -3,7 +3,7 @@ layout: post
 title: Implementing Batch Normalization
 ---
 
-Bacth normalization is a "recent" technique introduced by [Ioffe et al, 2015](https://arxiv.org/abs/1502.03167 "Bacthnormalization research paper"). In this article, I will describe how the gradient flow through the batch normalization layer. This work is based on the course gave at Stanford in 2016 (cs231n class about Convolutional Neural Network). Actually, one part of the 2nd assignment consist in implementing the
+Batch normalization is a "recent" technique introduced by [Ioffe et al, 2015](https://arxiv.org/abs/1502.03167 "Batchnormalization research paper"). In this article, I will describe how the gradient flow through the batch normalization layer. This work is based on the course gave at Stanford in 2016 (cs231n class about Convolutional Neural Network). Actually, one part of the 2nd assignment consist in implementing the
 batch normalization procedure. In my previous article I didn't use a flowchart. Here I will use one so everybody can understand precisely how one can implement batch normalization precisely. Also I will derive the python code associated with each part. Note that the full code is in layers.py of assignment2. Finally I will also implement a faster way of computing the backward pass.
 
 ## Backward pass: Naive implementation
