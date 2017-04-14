@@ -3,12 +3,12 @@ layout: post
 title: Hinge Loss Gradient Computation
 ---
 
-When I started to follow *CS231n* course from Stanford as a self-taught person, I was a bit irritated that
-they weren't more explanations about how we are supposed to compute the gradient of the hinge loss. Actually,
-in the [lecture course](http://cs231n.github.io/optimization-1/ "Optimization") we can see a formula for the gradient of the SVM loss. Although the formula seems understandable, I still thinks we might need to get our hands dirty by doing the math. A pdf version of this article can be found at the end
+When I started attending *CS231n* class from Stanford as a self-taught person, I was a little annoyed that
+they were no more explanations on how one is supposed to compute the gradient of the hinge loss. Actually,
+in the [lecture](http://cs231n.github.io/optimization-1/ "Optimization") we can see the formula of the gradient of the SVM loss. Although the formula seems understandable, I still thinks we might need to get our hands dirty by doing the math.
 
 ## Loss Function
-In this part, I will quickly define the problem according to the data found in the first assignment of CS231n.
+In this part, I will quickly define the problem according to the data of the first assignment of CS231n.
 Let's define our Loss function by:
 
 $$L_i = \sum\limits_{j \neq y_i}[\ max(0, x_iw_j - x_iw_{y_i} + \Delta)\ ]$$
@@ -23,7 +23,7 @@ Where:
 + also, notice that $x_iw_j$ is a scalar
 
 ## Analytic gradient
-We want to compute $\forall i,j \in [1, N]\times[1, C]$ $\nabla_{w_{j}}L_i$. As we know
+We want to compute $\forall i,j \in [1, N]\times[1, C]$ $\nabla_{w_{j}}L_i$. We know
 $w_{j} \in \mathbb{R}^{D \times 1}$, so we can write:
 
 $$\nabla_{w_{j}}Li = 
@@ -35,7 +35,7 @@ $$\nabla_{w_{j}}Li =
 \end{bmatrix}
 $$
 
-Hence, let's find the derivative of $\frac{dLi}{dw_{kj}}$ with $k \in [1,\ C]$. To compute this derivative I will write $L_i$ without $\sum$ so it will be easier to visualize:
+Therefore, let's compute the derivative of $\frac{dLi}{dw_{kj}}$ with $k \in [1,\ C]$. To compute this derivative I will write $L_i$ without summation ($\sum$) symbol so that will make things easier to visualize:
 
 <div class="color-box text-80">
 $$
@@ -47,7 +47,7 @@ $$
 	\max(0, x_{i1}w_{C1} + x_{i2}w_{C2} +\ \ldots \ + x_{ij}w_{Cj} +\ \ldots \ + x_{iD}w_{CD} -  x_{i1}w_{y_{i}1} - x_{i2}w_{y_{i}2} +\ \ldots \ - x_{y_{i}D}w_{1D}) + \\[10pt]
 $$
 </div>
-So, now that we can see things quite easily, we see that:
+Now, we can clearly see that:
 
 $$ \forall k \in [1,\ C]\backslash\{y_i\},\ \forall j \in [1,\ D] \ \frac{dLi}{dw_{kj}} =  1(x_iw_k - x_iw_{y_i} + \Delta > 0)x_{ij}$$
 
@@ -77,11 +77,11 @@ $$
 \end{bmatrix}
 $$
 
-Now, what happen when $y_i = k$ ? Using the form of $L_i$ in the box, we see that $w_{y_{i}j}$ intervenes in all lines. Hence we have that:
+Now, what happen when $y_i = k$? Using the form of $L_i$ in the box, we see that $w_{y_{i}j}$ intervenes in all lines. Hence we have:
 
 $$y_i = k, \ \forall j \in [1,\ D] \ \frac{dLi}{dw_{y_{i}j}} =  -\sum\limits_{k \neq y_{i}}1(x_iw_k - x_iw_{y_i} + \Delta > 0)x_{ij}$$
 
-leading to:
+and finally we can write:
 
 $$
 \nabla_{w_{y_i}}Li = 
@@ -97,9 +97,8 @@ $$
 	-\sum\limits_{k \neq y_{i}}1(x_iw_k - x_iw_{y_i} + \Delta > 0)x_{i2} \\[10pt]
 	\vdots \\
 	-\sum\limits_{k \neq y_{i}}1(x_iw_k - x_iw_{y_i} + \Delta > 0)x_{iD}
-\end{bmatrix}
-=
--\sum\limits_{k \neq y_{i}}1(x_iw_k - x_iw_{y_i} + \Delta > 0)\begin{bmatrix}
+\end{bmatrix} \\
+=-\sum\limits_{k \neq y_{i}}1(x_iw_k - x_iw_{y_i} + \Delta > 0)\begin{bmatrix}
 	x_{i1} \\[10pt]
 	x_{i2} \\[10pt]
 	\vdots \\
@@ -108,18 +107,31 @@ $$
 $$
 
 ## Vectorized implementation
-Now that we understand how we got the gradient of the hinge loss function. We will compute the gradient using
-Numpy and a vectorized implementation (the unvectorized implementation is quite straightforward). I won't put the Python code here, I will just use image and pseudo code to present the result. The Python implementation can be found in the *linear_svm.py* file.
+Now that we understand how the gradient of the hinge loss function is computed. We will implement it using Python. As the unvectorized implementation is quite straightforward, I will only derive the vectorized implementation. The full Python code can be found in the *linear_svm.py* file.
 
 ### Forward pass
 Firstly we will focus on the implementation of the forward pass. In other words, we will derive a formula to compute the loss using a vectorized implementation. For a better understanding, I created a picture:
 
 <div class="centered-img">
 <img src="../images/svm/vector_svm.png" alt="Hinge loss - vectorized implementation" />
+<div class="legend">Figure 1: Hinge loss - Forward pass vectorized implementation</div>
 </div>
 
+According to Figure 1, in python we can write:
+```python
+  scores = X.dot(W)
+  correct_class_score = scores[np.arange(num_train), y]
+
+  # add an axis with np.newaxis so we can perform the substraction.
+  # For further information you can visit:
+  # https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html
+  margins = np.maximum(0, scores - correct_class_score[:, np.newaxis] + 1)
+  margins[np.arange(num_train), y] = 0
+  loss = np.sum(margins)
+```
+
 ### Backward pass
-Now that we understand how to implement the forward pass, we will deal with a slightly more difficult challenge. How to compute the backward pass, that is to say, how to compute $\nabla_w L$ with a vectorized implementation. Firstly, we will rewrite our $\Delta_{w_{j}}L_i$ to have a better understanding of what the matrix should look like:
+Now that we understand how one can implement the forward pass, we will deal with a slightly more difficult challenge: How to compute the backward pass, that is to say, how to compute $\nabla_w L$ with a vectorized implementation? Firstly, we will rewrite our $\Delta_{w_{j}}L_i$ to have a better understanding of what the matrix should look like:
 
 $$
 \nabla_{w_{j}}L_i = 
@@ -151,43 +163,77 @@ $$
 $$
 </div>
 
-Now that we see the shape of the matrix is is easy to implement the unvectorized formula. We just need to:
+Now that we see the shape of the matrix is is easy to write **the unvectorized naive** implementation. We just need to:
 
-+ construct a matrix of zeros having shape (D,C) (same shape as W)
-+ assign $x_i$ to each column of this matrix if $j \neq y_i$ and $(x_iw_1 - x_iw_{y_i} + \Delta > 0)$
++ build a matrix of zeros having size (D,C) (same size as W)
++ assign $x_i$ to each column of this matrix if ($j \neq y_i$ and $(x_iw_1 - x_iw_{y_i} + \Delta > 0)$)
 + assign $-\sum\limits_{j \neq y_{i}}1(x_iw_j - x_iw_{y_i} + \Delta > 0)x_i$ to the $y_i$ column
 
-Now, the vectorized implementation is slightly harder to compute but fortunately we've already done the job. Actually we computed in the forward pass (see Forward pass) a matrix having on each of his element (besides $j = y_i$ where it is 0):
+```python
+  dW = np.zeros(W.shape) # initialize the gradient as zero
+
+  # compute the loss and the gradient
+  num_classes = W.shape[1]
+  num_train = X.shape[0]
+  loss = 0.0
+  for i in xrange(num_train):
+    scores = X[i].dot(W)
+    correct_class_score = scores[y[i]]
+    nb_sup_zero = 0
+    for j in xrange(num_classes):
+      if j == y[i]:
+        continue
+      margin = scores[j] - correct_class_score + 1 # note delta = 1
+      if margin > 0:
+        nb_sup_zero += 1
+        loss += margin
+        dW[:, j] += X[i]
+    dW[:, y[i]] -= nb_sup_zero*X[i]
+```
+
+The vectorized implementation is slightly harder to compute but fortunately we've already done all the work. Actually during the forward pass we computed a matrix with the following elements (besides $j = y_i$ where it is 0):
 
 $$(x_iw_j - x_iw_{y_i} + \Delta > 0)$$
 
 So this matrix (let's call it the **margin matrix**) looks like what we want except that:
 
-+ We want to construct a matrix that has the same shape as the margin matrix and that has 1 when the quantity of each cell of the margin matrix is positive and a zero otherwise
-+ We want to construct a matrix that have on each cell of its $j = y_i$ column the negative sum of the indicator function of all the columns (except column $y_i$) of margin matrix
++ We want to build a matrix that has the same size as the margin matrix and that has 1 when the quantity of each cell of the margin matrix is positive and a zero otherwise
++ We want to build a matrix that has on each cell of its $j = y_i$ column the negative sum of the indicator function of all the columns (except column $y_i$) of margin matrix
 + We need to multiply this newly created matrix by X (because we see $x_{ij}$ is present in each cell of $\nabla_{w_{j}}L_i$)
 
 So now, it is relatively straightforward:
 
-+ We create a matrix of the same size of the margin matrix. Let's call it \textbf{mask}. Then we need to have $1$ on each cell of the \textbf{mask} matrix when the quantity on the corresponding cell of the \textbf{margin matrix} is positive. In python we can do this using:
++ We create a matrix having the dimension of the margin matrix. Let's call it **mask**. We then need to have $1$ on each cell of the **mask** matrix when the quantity on the corresponding cell of the **margin matrix** is positive. In python we can do this using:
 
-$$mask[margin > 0] = 1$$
+```python
+mask = np.zeros(margins.shape)
+mask[margin > 0] = 1
+```
 
-+ Now, we need to change the content of each cell of **mask matrix** when we are on the $y_i$th column. And we need to put in each row of this $y_i$th column the negative value of the sum of all the value in the other rows. Hence in python we can do that by creating a vector containing the sum of the column:
++ Now, we need to change the content of each cell of the **mask matrix** when we are on the $y_i$th column. We need to put in each row of this $y_i$th column the negative value of the sum of all the values in the other rows. In python we can do that by creating a vector containing the sum of the column:
 
-$$np\_sup\_zero = np.sum(mask, axis=1)$$
+```python
+np_sup_zero = np.sum(mask, axis=1)
+```
 
-and then we replace the $y_i$th column vector of the **mask matrix** by this new vector by doing:
+then we need to replace the $y_i$th column vector of the **mask matrix** by this newly created vector by doing:
 
-$$mask[np.arange(num\_train), y] = -np\_sup\_zero$$
+```python
+mask[np.arange(num_train), y] = -np_sup_zero
+```
 
-+ finally we need to multiply by X so the final matrix is of shape (D,C) the same shape as W. We know mask's dimension is (N,C) and X's dimension is (N, D) so we need to return $X^{\intercal}W$
++ finally we need to multiply by X so the final matrix has the same dimension as the W matrix: (D,C). We know mask's dimension is (N,C) and X's dimension is (N, D) so we need to return $X^{\intercal}W$:
 
-Don't forget to divide by the number of training samples and to add the regularization term.
+```python
+dW = X.T.dot(mask)
+```
+
+At the end, we need to divide by the number of training samples and to add the regularization term:
+```python
+dW /= num_train
+dW += reg*W
+```
 
 ## Conclusion
-Finally we saw how we can compute the gradient of the hinge loss function. This wasn't difficult. The main issue we can encounter when we are asking to compute such gradient resides in the formulation of the problem. What we need to compute ? The gradient w.r.t which variables ? What are the size of the variables involve in such a computation ? It is important to define the problem precisely, the rest will follow naturally if you already know what it means to compute a gradient. Finally we see that it can be usefull to write down the matrix or even to write formula without the summation symbol to help us visualize the problem.
-<br>
-
-[![alt pdf](/images/pdf.png "Pdf  version"){: .img-16} Gradient of the Hinge Loss](../pdf/gradient_svm.pdf "Gradient of the Hinge Loss")
+Finally we saw how one can compute the gradient of the hinge loss function. This wasn't difficult. The main issue we can encounter when we are asking to compute such gradient resides in the formulation of the problem. What do we need to compute? The gradient w.r.t which variables? What are the size of the variables involve? It is important to define the problem precisely, the rest will follow naturally if you already know what it means to compute a gradient. Finally we see that it can be useful to write down the matrix expression.
 <br><br>
