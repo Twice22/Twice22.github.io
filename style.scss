@@ -322,6 +322,8 @@ sup {
 
 .centered-img {
 	text-align: center;
+  width: 1200px;
+  transform: translateX(-140px);
 
   .legend {
     font-size: 90%;
@@ -330,6 +332,11 @@ sup {
   }
 }
 
-.img-16 {
-	height: 16px;
+.center {
+  text-align: center;
+}
+
+.quote {
+  font-family: "Monotype Corsiva";
+  font-size: 30px;
 }
