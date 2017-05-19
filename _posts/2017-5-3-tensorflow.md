@@ -1,9 +1,10 @@
 ---
 layout: post
+update: <b>Updated May 10<sup>th</sup> 2017</b>&#58; Add an introduction to TensorFlow principles
 title: Introducing Google Tensorflow
 ---
 
-TensorFlow is an open-source software library for machine learning developed by researchers and engineers working on the Google Brain Team. The first publicly available version was released in Novembre 2015. TensorFlow quickly became popular in the deep learning community for several reasons. Not only is TensorFlow a library developed by a professional developer team (whereas Caffe, Theano, ... are developed by academic researchers), but also TensorFlow allows to parallelize easily the computations on several processors.
+TensorFlow is an open-source software library for machine learning developed by researchers and engineers working on the Google Brain Team. The first publicly available version was released in Novembre 2015. TensorFlow quickly became popular in the deep learning community for several reasons. The main reason might be that TensorFlow is maintained by a professional developer team (whereas Caffe, Theano, ... are developed by academic researchers). I won't discuss the pros and the cons of the different machine learning frameworks here. It is not the point! A good rule of thumb is to check how many stars/fork TensorFlow got on [Github](https://github.com/tensorflow/tensorflow "TensorFlow repo"). According to the number of Stars/Forks of GitHub we can guess that TensorFlow has the biggest community!
 
 ## Installing Tensor on Windows
 When Google decided to release its library under the Apache 2.0 open source license, TensorFlow was primarily available on Mac and Linux. After several months, TensorFlow was finally available on Windows. However, it is much easier to use TensorFlow on Linux Operating System then on Windows. That is why I will only focus on how to install TensorFlow on Windows Operating System.
@@ -45,7 +46,7 @@ To install the GPU version of Windows you will firstly need to install:
 The steps are:
 1. Download [CUDA](https://developer.nvidia.com/cuda-downloads "Download CUDA") for your operating system
 2. Launch the installer and install CUDA
-3. Then download [cuDNN](https://developer.nvidia.com/cudnn "Download cuDNN"). You might need to create an nvidia account before downloading cuDNN.
+3. Then download [cuDNN](https://developer.nvidia.com/cudnn "Download cuDNN")[^1]. You might need to create an nvidia account before downloading cuDNN.
 4. Unzip the archive. You should get a folder containing 3 other folders:
     + bin
     + include
@@ -209,5 +210,6 @@ for i in range(200):
 	session.run(train_step, feed_dict={x: batch_x, label: batch_label} )
 ```
 
+[^1]: You need to install cuDNN 5.1. At the time I'm writing this tutorial TensorFlow still doesn't support cuDNN 6
 
 <br><br>
