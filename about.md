@@ -8,8 +8,30 @@ My name is Victor, after graduating from Télécom SudParis I started to work as
 {: .text-justify}
 
 ### More Information
-I'm currently available and will be delighted to start a PhD in the field of Machine Learning. If you are looking for someone motivated and interested in the field of Machine Learning don't hesitate to contact me.
+I'm currently available and will be delighted to start a Master 2 in the field of Machine Learning to then start a PhD. I listed here some of the materials I used to deepen my knowledge about ML:
+
+Courses:
+- Certification Coursera [CS229: Machine Learning](https://www.coursera.org/account/accomplishments/verify/P6YMNE6EN3HM "Certification ML")
+- Certification Coursera [CS228: Probabilistic Graphical Models 1](https://www.coursera.org/account/accomplishments/verify/ALATNRU8JTFX "Certification PGM 1")
+- Certification Coursera [CS228: Probabilistic Graphical Models 2](https://www.coursera.org/account/accomplishments/certificate/ZZ65ZDATAY3F "Certification PGM 2")
+- Artificial Intelligence Nanodegree [Udacity](https://www.udacity.com/course/artificial-intelligence-nanodegree--nd889 "Certification AIND") - In Progress (I finished all the **available** assignments so far)
+- Stanford CS231n: CNN for Visual Recognition - Here is my [solutions to the assignments](https://github.com/Twice22/CS231n-solutions "My solutions")
+- Stanford CS224n: Deep Learning for NLP - Here is my [solutions to the assignments](https://github.com/Twice22/CS224n-solutions "My solutions")
+
+Book that I read:
+- Python Machine Learning - [Here](https://github.com/Twice22/PythonMachineLearning) are the code that I rewrote with comments.
+- Pattern Recognition and Machine Learning - Bishop
+- Artificial Intelligence A Modern Approach 3rd edition - Stuart Russel, Peter Norvig
+- Deep Learning - Yoshua Bengio, Ian Goodfellow, Aaron Courville
+- lots of research papers and blog articles
+
+Future courses that I will take before September:
+- Accelerated C++ - In Progress -
+- Reinforcement Learning. I will study Reinforcement Learning soon using both [David Silver Course](https://www.youtube.com/watch?v=2pWv7GOvuf0) and [Gerogia Tech Course](https://www.udacity.com/course/reinforcement-learning--ud600)
+- I also want to dig deeper into the use of TensorFlow. So I will study [CS20SI](http://web.stanford.edu/class/cs20si/)
+- I will also study convex optimization problems in greater depth using this [book](http://stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 {: .text-justify}
+
 
 ### Contact me
 [victor.busa@gmail.com](mailto:victor.busa@gmail.com)
