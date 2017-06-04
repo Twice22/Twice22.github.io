@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Markov Chain Exercices
+title: Markov Chain Exercise
 ---
 
 Here are some of the exercices on Markov Chains I did after finishing the first term of the [AIND](https://www.udacity.com/course/artificial-intelligence-nanodegree--nd889 "Artificial Intelligence Nanodegree"). These exercices are taken from the book "Artificial Intelligence A Modern Approach 3rd edition". I did some exercices of this book to deepen my knowledge about Markov Chain. I don't pretend all my answers are 100 % accurate but I think they make sense. In addition, transcribing my answers onto my blog allowed me to familiarize myself with the LaTeX syntax
