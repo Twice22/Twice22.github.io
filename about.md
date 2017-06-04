@@ -26,8 +26,8 @@ Books that I read:
 - lots of research papers and blog articles
 
 Future courses that I will take before September:
-- Accelerated C++ - [In Progress](https://github.com/Twice22/acceleratedcpp "Accelerated C++") -
-- Reinforcement Learning. I will study Reinforcement Learning soon using both [David Silver Course](https://www.youtube.com/watch?v=2pWv7GOvuf0) and [Gerogia Tech Course](https://www.udacity.com/course/reinforcement-learning--ud600)
+- Accelerated C++ - [FINISHED](https://github.com/Twice22/acceleratedcpp "Accelerated C++") -
+- Reinforcement Learning - [IN PROGRESS](https://twice22.github.io/reinforcement-learning/) - I will study Reinforcement Learning soon using both [David Silver Course](https://www.youtube.com/watch?v=2pWv7GOvuf0) and [Gerogia Tech Course](https://www.udacity.com/course/reinforcement-learning--ud600)
 - I also want to dig deeper into the use of TensorFlow. So I will study [CS20SI](http://web.stanford.edu/class/cs20si/)
 - I will also study convex optimization problems in greater depth using this [book](http://stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 {: .text-justify}
