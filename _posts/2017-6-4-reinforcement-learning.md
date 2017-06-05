@@ -1,73 +1,79 @@
 ---
 layout: post
-update: <b>Note</b>&#58; I will update this article in the coming days (grammar, add images, add other exercise)
-title: Reinforcement Learning Exercise
+update: <b>Note</b>&#58; I will update this article in the coming days with more exercises
+title: Reinforcement Learning Exercises
 ---
 
-In this article I present some solutions to reinforcement learning exercise. These exercise are
+In this article, I present some solutions to reinforcement learning exercise. These exercises are
 taken from the book "Artificial Intelligence A Modern Approach 3rd edition". I will gradually
 update this post with new solutions while I'm learning about the field. I don't pretend all my
-solutions are 100 % accurate but I think they make sense. If you do find some mistakes, please do
+solutions are 100 % accurate but I think they make sense. If you do find some mistakes, please
 let me know.
 
 <div class="blue-color-box">
-<b>15.1</b> For the 4 × 3 world shown in Figure 17.1, calculate which squares can be reached
+<b>15.1</b> For the 4 × 3 world shown in Figure 17.1.1, calculate which squares can be reached
 from (1,1) by the action sequence [Up, Up, Right, Right, Right] and with what probabilities.
 Explain how this computation is related to the prediction task (see Section 15.2.1) for a hidden
 Markov model.
 </div>
-
-**Answer** Well, this exercise doesn't seem difficult but we surely need lot's of time to
-compute all the solutions with their probabilities. So, first of all, we are asking to compute the probabilities
-of being in each square at the end of the sequence *[Up, Up, Right, Right, Right]*. So we don't
-need to use the Ballman equation here, as we only want a **probability** and not the **utility**.
-Then, obviously, we can do somehting a little bit smarter than just enumerate all the solutions. Indeed,
-we can compute the probability of each square we reach doing only a upward movement and then reusing these
-probabilities (associated with their positions) to compute the new probabilities of being in the next position
-when we are doing another movement of the sequence, and so now. For the 2 first Upward movements we have:
-
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:400px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R3VfLcpswFP0aZtpFMkJyaLOMSdpuummm07Uw4jERiAoRk359r5CEedhTT%2By4drxBnPu%2BukI%2BHgmL9qukVfZdxIx7GMWtR%2B49jP0FDuChkReDBLcWSGUeW6UN8Jj%2FYRZEFm3ymNUjRSUEV3k1BleiLNlKjTAqpViP1RLBx1ErmrIZ8LiifI7%2BymOVGZTcoA3%2BjeVpZiMvkBVEdPWUStGUNpyHSdL9jLigzpXVrzMai%2FUAIg8eCaUQyqyKNmRct9Z1zdh92SHt05asVPsYEGPwTHnDXMYBB9OlohE0AyoSMmaykwW%2FG53X0t8sQWHd96eX627cjJRq9WJb60DFWnVFeZ6WHrnTOwkZQxzId%2BhVS5w7K8ls37eITK5XK8E5rWpmHbu3QT5Bap%2Bm1EjAnE5BOUNiPVwm40EhLvFd3qH52vIovqIBQIsKFmVUV6b4n5Xuwwzvk4guP7EdMX90A%2FH%2BHGpwPoXHmss%2Bhw9wnkP%2F41uPCrr2j%2BsO4X%2F6m1Q8a92ZGJ5yo%2FEJNvrzcd3hhTOtm2rqLRFw03VfeTG%2BpbqrFyF9Q0xdDgfR2M%2B6sCXSmQzLKaZs1wDh138p9v8I9Of79swa%2BD87r48uOaTzr64VXQeLt45xQRtBDj0CB2wE2vfwXOZGaHDbX3GNGzbicDyiFFhzCcAzVXAAfFjWSoonFtpLoRQlaC6TnPMJJJ6ZTHjHwLQUkJjWGYutG8uOmIQIOxmW3%2FM2oMNMFExJKAG1jhoaC0uENVvBI9aE8Serkg0YZU81qWWyae95Q%2BdgYRmde90wx042YOfk4S8%3D"></iframe>
-<div class="legend">Figure 17.1.1: occupancy probabilities at each time step for the first 2 movements.</div>
+<iframe frameborder="0" style="width:100%;height:343px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-1#R7Ztdb5swFIZ%2FTaTtohXGQNPLJOu2m0nTUmnXDjiA6uAMnCbdr58Bmw%2FjLigCUkq5CT42NrzP4eCDyQyudqdvMdoHP6iHycw0vNMMfpmZJjBtwH9Sy0tucYCVG%2Fw49ESj0rAO%2F2JhNIT1EHo4qTVklBIW7utGl0YRdlnNhuKYHuvNtpTUR90jHzcMaxeRpvV36LFAXIVhlPbvOPQDMTK0RcUGuU9%2BTA%2BRGG5mwm225dU7JLsS7ZMAefRYMcGHGVzFlLJ8b3daYZJKK1XLj%2Fv6Sm1x2jGOWJsDzPyAZ0QOWJ5xdl7sRUpxDEKG13vkpuUjxz2Dy4DtCC8BvpuwmD4VIkFu2YaErCihMS9HNOKHLcUoOGb49OqZguL6uVthusMsfuFNTlL7%2FAjhUFAUjyWduTAFFTDShoQ%2F%2BEW%2FpSh8R%2Bii1wiORiNgXU0kazQiFffe8CLZoxEJGlcTyRmNSEpIAmA4ke56Fok%2Ft%2B6zrWhZqXGyrZ%2BQNaSI89F4mhqzhlTpfjQqqUFrSJXkUBWZ1o%2BLX49vVSs1dt0PKBUYjUc1otOQMo1nbt4IT0PKNJ7peSM%2BDSmTboLuEJZeLOWnX9XL%2BXOgsuImyXLzBW%2FAL%2FVUVvI9P%2F9dAtkTP4m8M1nV8ZREpNKaKYmRbR1hAnYNk203KNkaSrALSroMoQtKN%2B%2BcEYADQtJlKF1Aas2I68Z0WJSQpYliiIR%2BxIsu1xlz%2BzKlELqILETFLvS8dJilzg86ADevh8CiXOFmabhZXXDTJU1dcDMnwA04VwSnS9S6AAcnAM60rghOlzt2Ac6aADhoXg%2BcHPrjEXdJqFS4ad5C9MZNl1p%2FPOIu4gY077x746bL9T%2BecBdxswfENp5VL8tWvNtoJkx9vXtos%2B6FI2%2BRrtunjkRQkoTuOZ3yLrDXWMg%2FK8mZHFHaYkwQC5%2Fr3et0ECP8pGF2q0rF7xXF7xQpE3qIXSyOKtU835GpdMRQ7GPW6CjDUlx2O1ItFt%2BSAO3T3S3BJ4FseY7e%2F5eWqlQbbw2KtpIaAPmA4qMR%2B9axxugNKsRLvcHpzxlaLDJe2xkMxRcsOzfIXoA5Jd%2Bw1SDfY6RosXj61pzDVp1jWoEDDuccfeX9xu18AhNa604h1Zyq9TWjlT7SA7kppP5QvVnlit8Q6PrK%2FaeBzrbh9dD1lf7LXjbS8Al9rrDcqO3eMV9T%2FaKx5Wu5LlYMoe4bhX74bqbKV31oQs0Ljo748mL5hX4%2BPSr%2FBQEf%2FgE%3D"></iframe>
+<div class="legend">Figure 17.1.1: (a) A simple 4 x 3 environment that presents the agent with a sequential
+decision problem. (b) Illustration of the transition model of the environment: the "intented" outcome occurs
+with probability 0.8, but with probability 0.2 the agent moves at right angles to the intended direction. A collision with a wall results in no movement.<br>
+The two terminal states have reward +1 and -1, respectively, and all other states have a reward of -0.04.</div>
 </div>
 
-So for example, to compute 0.24<sup>1</sup> in position **(1,2)**, we reused the probability of the first column and we multiply by the probability given in the exercise. It gives us:
+**Answer** Well, this exercise doesn't seem difficult but we surely need lot's of time to
+compute all the solutions with their respective probabilities. So, first of all, we are asking to compute the probabilities of being in each square at the end of the sequence _[Up, Up, Right, Right, Right]_. Hence we don't need to use the Ballman equation here, as we only want to compute **probabilities** and not **utilities**.<br>
+Obviously, we can do something a little bit smarter than just enumerate all the solutions. Indeed,
+we can compute the probability at each time step and reuse these probabilities to compute the probabilities at
+the next time step. 
+<br>
+For example, we compute the probability of reaching each position after doing one **Up**ward
+movement and then we reuse these probabilities (first column of Figure 17.2) to compute the probabilities at the second time step (second column of Figure 17.1.2):
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:400px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R3VfLcpswFP0aZtpFMkJyaLOMSdpuummm07Uw4jERiAoRk359r5CEedhTT%2By4drxBnPu%2BukI%2BHgmL9qukVfZdxIx7GMWtR%2B49jP0FDuChkReDBLcWSGUeW6UN8Jj%2FYRZEFm3ymNUjRSUEV3k1BleiLNlKjTAqpViP1RLBx1ErmrIZ8LiifI7%2BymOVGZTcoA3%2BjeVpZiMvkBVEdPWUStGUNpyHSdL9jLigzpXVrzMai%2FUAIg8eCaUQyqyKNmRct9Z1zdh92SHt05asVPsYEGPwTHnDXMYBB9OlohE0AyoSMmaykwW%2FG53X0t8sQWHd96eX627cjJRq9WJb60DFWnVFeZ6WHrnTOwkZQxzId%2BhVS5w7K8ls37eITK5XK8E5rWpmHbu3QT5Bap%2Bm1EjAnE5BOUNiPVwm40EhLvFd3qH52vIovqIBQIsKFmVUV6b4n5Xuwwzvk4guP7EdMX90A%2FH%2BHGpwPoXHmss%2Bhw9wnkP%2F41uPCrr2j%2BsO4X%2F6m1Q8a92ZGJ5yo%2FEJNvrzcd3hhTOtm2rqLRFw03VfeTG%2BpbqrFyF9Q0xdDgfR2M%2B6sCXSmQzLKaZs1wDh138p9v8I9Of79swa%2BD87r48uOaTzr64VXQeLt45xQRtBDj0CB2wE2vfwXOZGaHDbX3GNGzbicDyiFFhzCcAzVXAAfFjWSoonFtpLoRQlaC6TnPMJJJ6ZTHjHwLQUkJjWGYutG8uOmIQIOxmW3%2FM2oMNMFExJKAG1jhoaC0uENVvBI9aE8Serkg0YZU81qWWyae95Q%2BdgYRmde90wx042YOfk4S8%3D"></iframe>
+<div class="legend">Figure 17.1.2: occupancy probabilities at each time step for the first 2 movements.</div>
+</div>
+
+So for example, to compute 0.24<sup>1</sup> in position **(1,2)**, we reused the probabilities of the first column and we multiplied by the probability given in Figure 17.1.
 
 $$
 P((1,2) \text{ in step 2}) = P((1,1) \text{ in step 1}) \times P((1,2)|(1,1) \text{ in step 1}) + P((1,2) \text{ in step 1}) \times P((1,2)|(1,2) \text{ in step 1}) + P((2,1) \text{ in step 1}) \times P((1,2)|(2,1) \text{ in step 1}) \\
 = 0.1 \times 0.8 + 0.8 \times (0.1 + 0.1) + 0.1 \times 0 = 0.24
 $$
 
-Where $(0.1 + 0.1)$ in $0.8 \times (0.1 + 0.1)$ comes from the fact we can stay in our position if, while we are willing to go Up, the agent try to go left (with probability 0.1) or
-right (with probability 0.1). as there are walls in both directions, the agent will likely stay is its position.
-
-So finally we can come up with the full table, with the asked occupancy probabilities in last column:
+So finally we can come up with the full table, with the asked occupancy probabilities in the last column:
 
 <div class="centered-img">
 <iframe frameborder="0" style="width:100%;height:520px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R5Vhdk5owFP01zLQP24GED32sdrt96Ut3On0OEoHZQGiIu25%2FfRMJX6JIBHVsfTGee3Nzc%2B7l4hwDLpPtE0NZ9J0GmBjADLYG%2FGIAYNnAFV8SeS8Qd66AkMWBcqqB5%2FgPVqCp0E0c4LzlyCklPM7a4IqmKV7xFoYYo29ttzUl7VMzFOIO8LxCpIv%2BigMeqVuYZo1%2Fw3EYqZMdoAw%2BWr2EjG5SdZwB4Hr3KcwJKkMp%2FzxCAX1rQPDRgEtGKS9WyXaJiaS2ZK3Y9%2FWItUqb4ZQP2QCLDa%2BIbHCZsUvE1gVHviBD3IiyALOdzf29kXktrHopHN4qfiq7pMlpOeX8XVFbghxv%2BQMicZga8LOspMhYnCPybUaVljKcskSK9wOmIteHFSUEZTlWgctfjXzcUH0XV%2FWp6NN9kHWQQDZXkXHjImXix6IL8uXOSWL5DQAlmVikfp4Vl%2F%2BZSR46eJWEf%2F%2BJHTnzx64h%2Fr2AEux24VR9WeXwQTzPS%2BvjpVvF%2FGRNG84EJ%2BPVrq6G78zWcLbd%2FjSuWURwhSLOpg0HhnMNnNNnV76WN9zZmplOfxoaReyrDzyvPsOfn9LT1ejg2XCiTGjrPEfOieJOwCo4f3Tthewce%2FqCcx3iNHjztIbVdUge1bpnkzyiOo41%2FPVgeUDjIXDB5SmHt%2Bzr4XPG9OClhocLvGuQfOYr83Z9beqUR6s%2Btm33e09E%2BZ2NkhG1ss15fxO3h9B8fvG5Yt9sroxqeZ3p7GhMmZnrTfbvvY%2FyO5sy48aTBv%2BWLQWcy%2FP%2Fv4ycEYWDwDvxv%2FNgLSR4SD6TeKEgljhoyYBA6n8Cj3hCBGCJZc4ZfcFLSqiUG1OaCs%2FFOiZkD6KvmK3JTjWVVoEEKI9woMIoRRMzccJRVdSqtNZk%2B4RpgjkTVzDVBlups0q8hkolrZXOWvCNGiqw7ThKgVbqc1hFriVYsVAqbPmzVnt3toaiDh%2F%2FAg%3D%3D"></iframe>
-<div class="legend">Figure 17.1.2: occupancy probabilities at each time step. Answer to the question are the probabilities in the last column</div>
+<div class="legend">Figure 17.1.3: Occupancy probabilities at each time step. The probabilities in the last column are the answer to the question.</div>
 </div>
 
-This computation is related to the prediction task fro a HMM in the sense that we only need to consider the probability of the previous position to compute the
-probability of being in the next position.
+This computation is related to the prediction task for a HMM in the sense that we only need to consider the probabilities of the previous positions to compute the probabilities of being in the next positions.
 
 
 <div class="blue-color-box">
-<b>17.2</b> Select a specific member of the set of policies that are optimal for R(s) > 0 as shown
-in Figure 17.2(b), and calculate the fraction of time the agent spends in each state, in the limit,
+<b>17.2</b> Select a specific member of the set of policies that are optimal for $R(s) > 0$ as shown
+in Figure 17.2.1, and calculate the fraction of time the agent spends in each state, in the limit,
 if the policy is executed forever. (Hint: Construct the state-to-state transition probability
 matrix corresponding to the policy and see Exercise 15.2.)
 </div>
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:346px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-2#R7ZxBk5owFMc%2FDTPtYWeEAK7H1W7bS2c63UPPESIyi8RCXLWfvgESEIhu6kAwKx524SUk8P89X%2FJCRgMsNodvCdyuf2AfRYY18Q8G%2BGJYFphO6d%2FMcCwMzswtDEES%2BoXJrAwv4V%2FEjBNm3YU%2BSmsVCcYRCbd1o4fjGHmkZoNJgvf1aisc1XvdwgC1DC8ejNrW36FP1oXVdiaV%2FTsKgzXrGfCCJfRegwTvYtadYYFV%2FimKN5A3xeqna%2Bjj%2FYkJPBtgkWBMiqPNYYGiTFmuWnHd1zOl5W0nKCYyF1jFBW8w2iF%2Bx%2Fl9kSOXYr8OCXrZQi8731PaBpivySaiZyY9TEmCX0uRALWswiha4Agn9DzGMb1sznpBCUGHs3dqls9PvQrhDSLJkVZhFzwyxZhDAXa6r%2BjwGusTMNwGmT8EZbuVKPSA6SLWCGijkekOJpKtjUiWPZhIjjYiAWswkVxtRGqEJNNUJ9K0Z5HouDXLP2XNkxI3%2F%2FQTslSK%2BKiNpzVjlkqVZtqo1AxaKlXiXWkgUzNszRSqZGqjUiswqZRJn2l5KzKplEmfmXkrNKmUSTQ3dyOSPSymt3%2Bql%2Ftnh3nBQ5qn5U%2B0An3UQ1VIj4Li%2F9zkLdGbKBrjRR3PRlgWLZiNTPJPR5iAU8PkOC1KjoAS6IKSKDnogtLDB2dkAoWQRMlJF5CkGVHdiAhLI2QJohiMwiCmpx7VGVH7PKMQejB6YgWb0PezbuYiP%2BhiRJ3UY6A1bYOzBeDsLsCJEqYuwFn3AO5xQHCiJK0LcOAOwFnugOBEeWMX4Ow7AAfs4cDxmeo4xl0DrsFNsALRGzdRbj0OcVdxMwXr3b1xEyX74wh3FTdHITbR4kM3WXXRypIbfn1KPxtZVHbhJpON1cpm0yXfZfPqD8zcnNYTQMDXgU6ol1%2FgrjNAmRedKPafsj0ImUgRTNPQu6T0aXos%2F1Km6BT5rW0M76r4TprMbQmKIAnf6s2LlGM9%2FMRh7vXlF7MOadrQPsW7xEPsokr%2BVjvlEsyZdghMAkRa7eQYy4eWIyvxdnYk2yZr2rNu0LYa6pCtxEvlkS1l20wYOev%2FZdtqyHH6YgtE%2BUqDbbYla3t26GGbyOCSV59IYyldualbeyLiCrC5HYxIQOKdmtC3U8qA3ILLg4lYXFXxrIauiUTa43sbmIAoQRgBvw%2F4KCYjS%2FTMZroeAEu8x%2Bw7gpnTASPYtXPq23FwMEawS4CvnVrfO2BtIpjE%2FLrvCDarP6xpKQxgEtsxb9y%2F3TGAXQIssVV0BKxzAJPY5ao4gNnq4hfvSmP3no3x6xJg%2FdcIhgGsS%2FyyJdYIVKeQKgOYRAZ92%2F5dABwD2DnA2i8RDARYmwAmsUSgeAKmcgnMvvYF1e34tzMGsEuAtV8iGAjwjQYwelr9SkNRvfohDPD8Dw%3D%3D"></iframe>
+<div class="legend">Figure 17.2.1: Optimal policies for $R(s) > 0$. In the squares where there are 4 arrows, the agent can decide to go in any of these directions.</div>
+</div>
 
 
-**Answer** According to Figure 17.2(b) from the book, we can take whatever policy we want for the squares:
-(1,2), (2,1), (3,1), (1,2), (1,3), (2,3). For example we can choose to always go **right**. We
-must note that again, if we choose to go right the agent will go right with 0.8 probability and it will go
-down or up (in the perpendicular directions) with probability 0.1. Having say that our Transtion matrix looks like:
+**Answer** According to Figure 17.2.1, we can take whatever policy we want for the squares:
+(1,2), (2,1), (3,1), (1,2), (1,3), (2,3). For example, we can choose to always go **right**. We
+must note that, again, if we choose to go right the agent will go right with probability 0.8 and it will go
+down or up with probability 0.1. Having said that our Transition matrix looks like:
 
 <div class="centered-img">
 <iframe frameborder="0" style="width:100%;height:481px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R7VlLc5swEP41zLSHZECymfhY0yS99JRDzwLJwEQgR8gx6a%2BvZEk84njih4xJGl%2BAb7UPLauV8OfBqKjvOVpmvxkm1AM%2Brj340wMgmIBQXhTyopFwZoCU59gMaoGH%2FC8xoG%2FQVY5J1RsoGKMiX%2FbBhJUlSUQPQ5yzdX%2FYgtG%2B1yVKyRbwkCC6jf7Jscg0OvP9Fv9F8jQznqdWEKPkMeVsVRp3HoCLzU%2BLC2RNmfFVhjBbdyB468GIMyb0XVFHhKrU2qxpvbsd0iZsTkqxjwLUCs%2BIroiNOKRSdS5QLJMhZ8Q4JnwjC59WKq550N7KAesmP41cZWPaG1SJF5NaCwpSiytE87T04A%2F1JmXE0o%2BMt2tVSaw5I8lM3t8Q6VivEkYpWlbEGLZPnXjC1Fz1VGMm6%2FQ1yLcQrIpLR9yZiA18l3WZfKXpxFZsgW%2FyHUTB946PeBi%2F4Hi%2Fu0xC9yYn7k2qhAP3E3dsUkUJ3ZoE7k3C40wqcHtVulqnQ68t%2Fzpwa%2B7m0PexlblzKe4z1UvFNpTiUMV7QoM%2Bxu%2F%2BWTuolsG75sZf9Z9X8YBaPvumf%2FmeNUANfqIG6qB23J3uRrgD%2Btez0c5i9IoOiuvkc%2F5HWKtfHe1sm5qbD7oRNqZLxDbew917eXPUidx8eI%2B1XX%2BM%2Bh3BSdBBNbn7G2f8RfE%2FKLr7Rna08X0V1%2BUb0Aku9u1cR218CnyLZFG45pksDnpkEVAskcQzUVAJBPK2Epw9kohRpkipkpVy5HyRU%2FoKYs%2BEL%2BiGW1NSiWBUZQQbM4b3Ilx62MmdBQ0jV9T3hBVEcDkF3yhYDs9QnJZLa%2FkwcBOaIVmHK5xMp4anNBxl2lhuiTp5Y7g6%2B9hyghtZh3eFt%2F8A"></iframe>
-<div class="legend">Figure 17.2.1: Transition Matrix</div>
+<div class="legend">Figure 17.2.2: Transition Matrix</div>
 </div>
 
 So we have to solve the system:
@@ -100,6 +106,8 @@ $$
 \sum\limits_{i,j} \pi_{ij} = 1
 $$
 
+I let you solve this system...
+
 <div class="blue-color-box">
 <b>17.3</b> Suppose that we define the utility of a state sequence to be the maximum reward obtained
 in any state in the sequence. Show that this utility function does not result in stationary
@@ -111,12 +119,12 @@ such that MEU decision making gives optimal behavior?
 
 $$U(s_0, a_0, s_1, ..., a_n, s_n) = \max\limits_{i=0}^{n-1} R(s_i, a_i, s_{i+1})$$
 
-We say that a Utility function meets the stationary property if the result of applying the Utility function to
+We say that a utility function meets the stationary property if the result of applying the utility function to
 the sequences $[s_1, s_2, ...]$ and $[s_1', s_2', ...]$ leads to the same solution **and** the result of
-applying the Utility function to the (next) sequences $[s_2, s_3, ...]$ and $[s_2', s_3', ...]$ leads again to
+applying the utility function to the (next) sequences $[s_2, s_3, ...]$ and $[s_2', s_3', ...]$ leads again to
 the same solution.
 
-Obviously if we take $[2, 1, 0, 0 ...]$ and $[2, 0, 0, 0 ...]$ then the Utility function will return the same result: **2**. While in the (next) sequences $[1, 0, 0 ...]$ and $[0, 0, 0 ...]$ the Utility function won't return the same value so this Utility function does not result in stationary preferences between state sequences.
+Obviously, if we take $[2, 1, 0, 0 ...]$ and $[2, 0, 0, 0 ...]$ then the utility function will return the same result: **2**. While in the (next) sequences $[1, 0, 0 ...]$ and $[0, 0, 0 ...]$ the utility function won't return the same value so this utility function does not result in stationary preferences between state sequences.
 
 We can, nonetheless, still define $U^{\pi}(s)$ as the expected maximum reward obtained by using the policy $\pi$ starting in state $s$.
 
@@ -142,13 +150,13 @@ exactly to optimal policies in the original MDP.</li>
 $$U(s) = R(s) + \gamma \max\limits_{a \in A(s)} \sum\limits_{s'}P(s'|s,a)U(s')\tag{17.4.1}$$
 
 In this question we are asking to compute the Bellman equation using $R(s,a)$ and $R(s,a,s')$.
-If the reward depends on the action then as we want to maximize the utility (see the $\max$ in the
+If the reward depends on the action then, as we want to maximize the utility (see the $\max$ in the
 equation), we need to maximize our action too, so we can rewrite the Utility function as:
 
 $$U(s) = \max\limits_{a \in A(s)}\left[R(s,a) + \gamma\sum\limits_{s'}P(s'|s,a)U(s')\right]$$
 
-We are then asked to rewrite it using $R(s, a, s')$. This time the action depend of the action and
-on the resultant state, so we both need to put this term in the max over a and in the sum over s':
+We are then asked to rewrite it using $R(s, a, s')$. This time the action depends on the previous state and
+on the resultant state, so we need to put this term in both the max over a and the sum over s':
 
 $$U(s) = \max\limits_{a \in A(s)}\sum\limits_{s'}P(s'|s,a)[R(s,a, s') + \gamma U(s')]$$
 
@@ -161,7 +169,7 @@ U(s) = \max\limits_{a}\left[R'(s,a) + \gamma ' \sum\limits_{s'}T(s, a, s')U(s')\
 $$
 
 The second equality comes from the idea of the pre-state and the fact that we expand U(s) by one recursive call
-so we can write the pre-state and the state s'. The third equality is how we would like to rewrite the Utility function. So, by analyzing the second and the last relationship, we see that the equality is satisfied if we define:
+so we can write the pre-state and the state s'. The third equality is how we would like to rewrite the utility function. So, by analyzing the second and the last relations, we can see that the equality is satisfied if we define:
 
 + $R'(s,a) = 0$
 + $T'(pre, b, s') = 1$
@@ -204,11 +212,11 @@ $$ | \max\limits_{a} f(a) − \max\limits_{a} g(a)| \leq f(a_1) - g(a_1) \\
 = | f(a_1) - g(a_1) | \leq \max\limits_{a}|f(a) - g(a)|
 $$
 
-**b**. This question isn't difficult, we just need to carefully notices that want we want to prove is that:
+**b**. This question isn't difficult, we just need to carefully notice that what we want to prove is that:
 
 $$||BUi - BUi'|| \leq \gamma ||Ui - Ui'||$$
 
-and the question ask us to compute $|(B Ui − B Ui')(s)|$ first! So let's compute this quantity. We have:
+and the question asked us to compute $|(B Ui − B Ui')(s)|$ first! So let's compute this quantity. We have:
 
 $$
 |(B U_i − B U_i')(s)| = |R(s) + \gamma \max\limits_{a}\sum\limits_{s'}T(s, a, s')U_i(s') -
@@ -225,14 +233,14 @@ If we let :
 
 $$a^{*} = \arg \max \limits_{a} (\sum\limits_{s'}T(s,a,s')U_i(s') - \sum\limits_{s'}T(s,a,s')U_i'(s))$$
 
-we can then write (without max operator):
+we can then write (without the max operator):
 
 $$
 |(B U_i − B U_i')(s)| \leq \gamma|\sum\limits_{s'}T(s,a^{*},s')U_i(s') - \sum\limits_{s'}T(s,a^{*},s')U_i'(s)| \\
 = \gamma|\sum\limits_{s'}T(s,a^{*},s')(U_i(s') - U_i'(s))|
 $$
 
-Finally, we can now compute the **max norm** of $ BU_i - B U_i'$ to proove that the Bellman operator is a contraction:
+Finally, we can now compute the **max norm** of $ BU_i - B U_i'$ to prove that the Bellman operator is a contraction:
 
 $$
 ||B U_i − B U_i'|| = \max_{s}|(B U_i − B U_i')(s)| \\
@@ -255,7 +263,7 @@ defining $U_A$(s) and $U_B$(s).
 <li><b>b</b>. Explain how to do two-player value iteration with these equations, and define a suitable
 termination criterion.
 </li>
-<li><b>c</b>. Consider the game described in Figure 5.17 on page 197. Draw the state space (rather
+<li><b>c</b>. Consider the game described in Figure 17.7.1. Draw the state space (rather
 than the game tree), showing the moves by $A$ as solid lines and moves by $B$ as dashed
 lines. Mark each state with $R(s)$. You will find it helpful to arrange the states $(sA, sB)$
 on a two-dimensional grid, using $sA$ and $sB$ as “coordinates.”
@@ -264,15 +272,20 @@ on a two-dimensional grid, using $sA$ and $sB$ as “coordinates.”
 </li>
 </ul>
 </div>
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:143px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-7#R5ZhNs5sgFIZ%2FjcvOCKhXl4nNbTddZdG1UaLMRUkJqaa%2FvkcFPxIzt52aeidxI7zn8OH7MApaJMyrLzI6ZN9EQrmF7aSyyGcLY4RdBLdaObeKh5xWSCVLdFIvbNkvqkVbqyeW0OMoUQnBFTuMxVgUBY3VSIukFOU4bS%2F4eNRDlNIrYRtH%2FFr9zhKVtapj273%2BlbI0MyO7OrCL4rdUilOhh7Mw2TdXG84j05XOP2ZRIsqBRDYWCaUQqi3lVUh5ba1xrW33eiPaTVvSQv1JA9w2%2BBnxEzUzbualzsaKMmOKbg9RXNdLwG2RdaZyDjUExaOS4q0ziYCyZ5yHggvZtDfPbzIHEbu5IKInQaWi1c0HQZ09sOqoyKmSZ0ipDJq2hV5vRFfLHp6vpWzA7UVrkV4uaddv7xkUtG3TFpJHsRDhxTx0HsVDbC%2FmofswHvqLeehNeOhxVTshYPJDM70fJ2ECn47NB2wFCcg%2FVH0QSml9R6YbmEDbU6tfEQLX1BQUY3UhCnrBRUsRZ2kB1RhcpqCvawYMvmgrHchZktTDrKdWwQzYvDG17m1SDr%2Bf19jwDNhe7oQNPwE25CzHzb8TN%2FIE3DBejltwJ27OE3Aj9nLczOnqH8BhbwwOTmBmE9CL3ZnnErAZbWeE1YD47jLrvVUADwfnwVus%2FmZj84qCMAimNjY733XcmTY27sW%2Bxr0C702A9%2BYAjz4a%2BPXHAL8KQmezngLvxT7d7Wd6Vwf%2FizxU%2B58HTWzwg4ZsfgM%3D"></iframe>
+<div class="legend">Figure 17.7.1: The starting position of a simple game. Player A moves first. The two players take turns moving, and each player must move his token to an open adjacent space in either direction. If the opponent occupies an adjacent space, then a player may jump over the opponent to the next open space if an. (For example, if A is on 3 and B is on 2, then A may move back to 1.) The game ends when one player reaches the opposite end of the board. If player A reaches space 4 first, then the value of the game to A is +1; if player B reaches space 1 first, then the value of the game to A is -1.</div>
+</div>
+
 
 **Answer**
-+ **a**. when is $A$'s turn to move, $A$ reach a new state $s'$ from s and in this new state $s'$ is $B$'s
-turn to move. The the Utility function is written as:
++ **a**. When is $A$'s turn to move, $A$ reach a new state $s'$ from s and, in this new state $s'$ it's $B$'s
+turn to move. The utility function is written as:
 
 $$U_A(s) = R(s) + \max_{a}\sum\limits_{s'}T(s,a,s')U_B(s')$$
 
 As we want the utility $U_B$ from $A$'s point of view, $A$ will likely take into consideration that $B$ will
-want to **minimize** its Utility. So we have:
+want to **minimize** its utility. So we have:
 
 $$U_B(s) = R(s) + \min_{a}\sum\limits_{s'}T(s,a,s')U_A(s')$$
 
@@ -281,11 +294,11 @@ The process terminates when 2 successive utilities (for the same player) are equ
 
 + **c**, **d**
 To solve these questions we need to iteratively apply the value iteration algorithm starting from the four final states: (4,3), (4,2) and (2,1), (3,1). Note that the state (4,1) is not a final state as, if A reaches 4
-then the game ends and B can not reach 1 (and vice-versa).
+then the game ends and B can not reach 1 (and vice-versa). I won't try to solve this by hand. Yet, I might update this exercise in the future to sketch out the first few steps to take.
 
 <div class="blue-color-box">
-<b>17.8</b> Consider the 3 × 3 world shown in Figure 17.14(a). The transition model is the same
-as in the 4 × 3 Figure 17.1: 80% of the time the agent goes in the direction it selects; the rest
+<b>17.8</b> Consider the 3 × 3 world shown in Figure 17.8.1 below. The transition model is the same
+as in the 4 × 3 Figure 17.1.1: 80% of the time the agent goes in the direction it selects; the rest
 of the time it moves at right angles to the intended direction. <br>
 Implement value iteration for this world for each value of $r$ below. Use discounted
 rewards with a discount factor of 0.99. Show the policy obtained in each case. Explain
@@ -301,13 +314,17 @@ intuitively why the value of $r$ leads to each policy
 </li>
 </ul>
 </div>
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:334px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-8#R7ZnBlpowFIafhuWcQxLEcTnaabvpykXXESLkTCA2xgH79L2YAKLxnFkYnI6ygfy5ucH%2FCwmRgCyK%2Boeim%2FyXTJkIcJjWAfkWYIzwBMGpUfZGiVFkhEzx1Ab1wpL%2FZVYMrbrjKdsOArWUQvPNUExkWbJEDzSqlKyGYWsphr1uaMbOhGVCxbn6m6c6NyqZhL3%2Bk%2FEs1ycVK5q8ZUruSttdgMn6cJjqgrapbPw2p6msjiTyGpCFklKbq6JeMNFY27pm2n2%2FUNvdtmKl%2FkgDbBq8U7Fj7R3HAprO1xIywA3qvfUk%2FrOTbcXT9kDsBQKgt7qvhKusOas2DXRtMhnd%2FuouKa5yrtlyQ5OmXMFggqBcFwJKCC63Wsm3DgFpuudCLKSQCsqlLFmX9J0pzeqLPqDOXRi0TBZMqz2E2Abx1LSwwzWyCaqe%2FbMllh9hbzVqR1vW5e0thwvrupsA8UTgCf1nCFB0MwaRg8HnNAnjm5k0eQxU51yB8HgM4i%2FBwAS1IiyR4eHwM42MiWf6JfB4mKbGhPD8gOCcp3A4HoPZg4F7NhoTQruXelA4nY5GpYA8UfgwBPBNu3w%2F8dlhPRU8K6GYgM8M9HlDgcMu%2BcVWFDxNm27mLtBXADcLh9xm59wiB7foGtx8bY3xHXBD0xuC87WjJncADk9uCO7yDnPVe30NkgGeN4vjBZqdvPr06xoZrmuTc1ixA1Z8DVi%2BtqL3sKzhk4esfVMb4yHz9Wp%2BD8vaCTfk%2BPfNFzfs62X%2BLla1IbfYGzYo9t9uDnVH38fI6z8%3D"></iframe>
+<div class="legend">Figure 17.8.1: The reward for each state is indicated. The upper right square is a terminal state.</div>
+</div>
 
-**Answer** It would be to cumbersome to run the value iteration algorithm by hand on all the 4 cases. So I won't do it. Yet we can try to figure out the policy obtained in each case. I draw a figure with all the
-different policy for all the different cases a, b, c, d:
+**Answer** It would be too cumbersome to run the value iteration algorithm on all the 4 cases by hand. And the question asked to implement value iteration, so I think we should write a program to solve this question. I won't do it. Yet we can try to figure out the policy obtained in each case. I draw a figure with all the
+different policies for all the different cases _a_, _b_, _c_, _d_:
 
 <div class="centered-img">
 <iframe frameborder="0" style="width:100%;height:543px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.8-policies#R7V1Nc6M4EP01PuxhqhACjI9Jdnf2MlVblcOeCSg2Ndh4MUmc%2FfUrDPJHi1k0WiRVWnEqFVuCNrwnPdStlrKgD9vj1ybbb77VBasWYVAcF%2FTXRRiSKEz4n67kvS9JVkPBuimL4aBLwWP5DxsKg6H0pSzY4ebAtq6rttzfFub1bsfy9qYsa5r67faw57q6%2FdZ9tmZSwWOeVXLpX2XRbvrSOA4u5X%2Bwcr1pQcVTln9fN%2FXLbvi6RUifT6%2B%2BepsJU8Pxh01W1G9XRfS3BX1o6rrt322PD6zqoBWo9ef9%2FoPa82U3bNeqnBD2J7xm1QsTV3y6rvZdQPG2KVv2uM%2Fy7vMbp3tB7zfttuKfCH%2BbHfY9Ac%2FlkXGr94e2qb%2BfUaO85Lmsqoe6qpuTQfqc5izPz0de1TylccSR5GfUu%2FZxuIThnl5Z07LjD2%2BTnMHjbZLVW9Y27%2FyQo%2BCnP2NojXRA%2F%2B1CbTIUba5YFWXZ0JjWZ7sXRPmbAdRxgKkLgPsWNwJwcHrxmhkwJcQZqNEIqEnVDg3nBt3k75daVHw5nHTmjh%2FAb%2FR4qeTv1v3f%2B06AelP8Inpros44bXH3M0ZbcnrNRNvSGW0x2r4A9GVlD9MELaZQXyyCusQL6tIZqClaUEHvJ7E9UFdoQYXd3yaqwgvBCOvSIaxkGla2K%2B46%2F41%2FyqvscCjzW1xlGHsTrJAcuklIrm45HrllUdawKmvL11vzYzgM3%2FBnXZ4GoQLxBCAeAigP9UuTs%2BGsa18NGgonDLVZs2atZOhEy%2Fm21ZhS8AvxMwXbvC5R0M6MPCm4l%2Fh5IulcPQoampGpMZ8VPVMhBHi50mQqnTA0I1MKbio%2BptLoBl%2FdHgXMROb6k4Lji54lAvHVpIkE5nhS8KXR8xRCfHV5MjiSUHDP8fEUBhMdQZUoyZA55aNOQn7TczbDVf0f55S6m1KgeGN%2B1F3En46pyudMjRpvEXXHG964ItQYixFw8UzAiKq7eYVIIar4QVGFCmAT1RAtqlABbIbAI7z5IFACrMKqEF37oLBCDbAKq8IwAJ9TGIHwsrb3Dg0ZdN9jhaEFfqa042GSIXMBsdjJE8CK%2By5lWVpMLcP7AJDzLC3COjYX8um%2F62ZaWiQOb14gVJnEIqp4g4SSytiEFW9qoKQBNmHFG8QDGhCF9lBNFEbaHxRVqAFWYcUbxYMaYBVWL9MkwgAgvtSe1gWGKDA0n1%2BYfCZKdLH8eRIlKCR8Rp68TJSAPOl2KGjHXH9aOnlOO0qTsLg0Cu9zWs6TsAhrOALrZ6BFN1HCInGIJ%2FQchgSWeOO5kszYhBXvEmxJBGzCijfaCkXApvO6xBtuhSJgFVa84VYoAlZh9TNZAqzwoisApapnSNMJQ%2FO5hmJxk%2BdMQd9bmylzTnw65hbhZwoAHIk8rJ9Oa4kmDM3IlJcrkaNkpvglNGQwgJkquFb4mKLRTExBQyaZ8nIlssSUbqxZMmTuObXyckRBpzYkUWZqaouUGZnyU%2F2mNrrQZsrcjhkrL6euaZqCrkD0mIrCCUMzMuXl1DV0g2LdQXr433Zm5MnLqWuofbq7OkHpM7eYY%2BVlJAn2J%2B29gmCHMrlXUODlwI%2FAuIKuMwUNGXSmSKCQuYCPKrgxiTZV0JBRqkIfqZJ6la7jKxky5%2FiSwMu4XzJTKJ0E1kLpRPRfv5iCWzzSUHNUATedlAzNSZWXgT84btOe9oAjSYPTHiTwM0ox1RmUqZrqnnNSNRam%2BMkcy3A8x7K38iQKsl%2BuMi6fLocFDf892Q9OnoNaVmbLju1YgxE5FLt6x0DCxVCUVeV617U63moYL7%2FvkivKPKvuhoptWRTd19yP5XsMaM24TisU6RlXrfS8s%2Bt1M4Xr%2BHXyMUgww%2BZjanw%2FTfP9hXpAN0wWs8z3WNjEFd8e9u5YuJZTbMNBrhbbo%2F%2BjwRXbPnZuy3TL3gvBhC7cc4jIyhmNjOfgRKketvIYVh7EfmBsoQ9oF1z5qURRgZs6BFe0U6yqICT2PJMhS645bOXIHi5VANiOPM7MYSs%2FzXCJwi22I1sWmoNWjp2hkoTzwmYnmoB8pCCBa1UU5PgUKlGA4FpVBTkWhFoVosgmuPIQF7Uq0NQiuMJ79kUV6MiSPXPgyjkhqGSBOFQFKvtmqFSBuBQF2TdDJQoQW6uagDzSCKdcrQZsqOydoRIFmHpgF1zZO0OlCnA5q11wZe8MmSzQ27FCmlgEV3bPkMmCS3CRz0BEkUNwR%2F6nFypZAPOSUbq0iK3snaFSBTgvaRdc2T1DpQpwXtIguPxjU3c5JOe6r%2Fw2Nt%2FqgnVH%2FAs%3D"></iframe>
-<div class="legend">Figure 17.2.1: policy for each value of r. The red square are the square were the reward is equal to <b>r</b>. The white squares have reward equal <b>-1</b>, the gray square is the final square with reward <b>+10</b></div>
+<div class="legend">Figure 17.8.2: policy for each value of r. The red square are the square were the reward is equal to <b>r</b>. The white squares have reward equal to <b>-1</b>, the gray square is the final square with reward <b>+10</b></div>
 </div>
 
 **a**. If the reward in the red square is 100, the agent will likely want to stay in this square forever and
@@ -315,14 +332,14 @@ hence avoid to go to the final state (in gray). As we are dealing with a stochas
 direction we want with probability 0.8 and in the perpendicular directions with probability 0.1), the arrow around the final gray state need to point in the opposite direction to avoid going into the final state.
 
 **b**. If the reward in the red square is -3, then, as the reward of the white squares are -1 and the reward in the final square is +10, the agent we likely want to avoid the red square and go as fast as possible to the
-gray square. However we don't have a down arrow in (1,2) because if we were to put a down arrow in (1,2) the agent will likely make a detour that cost more than -3 points.
+gray square. However, we don't have a down arrow in (1,2) because if we were to put a down arrow in (1,2) the agent will likely make a detour that can can cost more than -3 points.
 
 **c**. Here the reward for the red square is 0, so, as the rewards in the white squares are -1, the agent will want to go through the red square before reaching the final gray square. It won't want to stay in the red square as the final square offer a +10 reward. That explains the sense of the arrows.
 
-**d**. Here r = 3, so again the agent will want to stay in the red square indefinitely (same explanations as in **a**).
+**d**. Here r = 3, so the agent will want to stay in the red square indefinitely (same explanations as in **a**).
 
 <div class="blue-color-box">
-<b>17.9</b> Consider the 101 × 3 world shown in Figure 17.14(b). In the start state the agent has
+<b>17.9</b> Consider the 101 × 3 world shown in Figure 17.9.1 below. In the start state the agent has
 a choice of two deterministic actions, Up or Down, but in the other states the agent has one
 deterministic action, Right. Assuming a discounted reward function, for what values of the
 discount $\gamma$ should the agent choose Up and for which Down? Compute the utility of each
@@ -330,6 +347,11 @@ action as a function of $\gamma$. (Note that this simple example actually reflec
 situations in which one must weigh the value of an immediate action versus the potential
 continual long-term consequences, such as choosing to dump pollutants into a lake.)
 </div>
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:323px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-9#R7ZxRb5swEIB%2FTR47YRtI8thk3fayl6XSngm4gEpwRkiT7NfPBAMBXCnqOLsOQaqCz8ZG913O57PTCVlujt8zbxv9ZAFNJtgKjhPydYIxwg7iH4XkVEpcZJeCMIsD0agRrOK%2FVAgtId3HAd21GuaMJXm8bQt9lqbUz1syL8vYod3shSXtUbdeSHuCle8lfenvOMijUjq3rEb%2Bg8ZhJEYmjqhYe%2F5rmLF9KoabYPJyvsrqjVd1JdrvIi9ghwsReZqQZcZYXt5tjkuaFKqttFY%2B9%2B2d2vq1M5rm1zyAywfevGRPqzd2E%2F7o4oXxHvgL5iehE%2FfPnlUVD7szsUfegI92bCr5XVh%2BLgqVlF3x4cveqjrc6hgfojinq63nF%2BUDNyjeKMo3CS8hfrvLM%2FZaYyDFK8RJsmQJy3g5ZSmtO32jWU6P7%2BoC1RrmhkvZhubZiTcRD7iCiTBZIoqHhv9MiKIL9JXMExYX1v02auc3QvNyCgSIwgMyDAGytTGw7wyES8DaGDgSBp9TSdOZNiW5UIZqusNGc3UQpsCWyuOG%2BfmqW17UuOcLxuMipE6J1VD%2FYcrIlpny6vnx17PhxqySAwJyKTwKNG32630fFDoVBBiNm8ahG4Uo5SCLxz%2BnmrpxiFI1QYXMysy1WZ1LZlnrfA2Eae60MGHk9DA5EkxkCEyyqNqglY02SI5CRlBB%2FdWIuNpyGZWOy5J4MS%2BJw5QXfa5myuWLAkLse8mjqNjEQVAMs5CZwQDcOi6wLl9wsyXc7CG4ydYBQ3DDI%2BCGXI3gZkDgyAjAYVsjuDkQOHsE4AjWB64a%2Bj7FfcRVdrhJkgNg3KCSA6OY4jqrM0maGIwbVDJhDDNch5ujENt9H6qarKw2BIVbLGB7LAYm4roYVGaYbmebpZfOVJjex7K1jpFa7NmiQi0SqPnUOMc81eeYCdRJGQMdcxeDSsdMZFGKkS6lp0WVLsXwzPyAm9%2F6zhyRe6z3LgalLuVmYr2eFlW6FKi8tnEuxdF3lJRA5agNdCldDCpdSjW0%2BS6lp0WFLsUeYOHjyq257GVdCb7wpuKvtvF1t7Uhdk%2BuOJhTb4AOjmyAZZIpyNQlH7pEJd9BOKIDpIVNIQr3JZTEAHDEoH%2FMoG6JfIXhg00%2BcKszCLs3eMvLvuJsgIzyEJteNtQxqvlsBOQcjeeobKj1Jndrt0%2FO1XiQyoZapKIio3rz6KYaj1JVxxEA0I3hMNXMUoaOF5vf8p%2FrLv5fAnn6Bw%3D%3D"></iframe>
+<div class="legend">Figure 17.9.1: 101 x 3 world for Exercise 17.9 (omitting 93 identical columns in the middle). The start state has reward 0.</div>
+</div>
+
 
 **Answer**: This exercise is quite straightforward. We need to apply the Bellman equation in the two different
 situations. Let's assume first that we want to go **UP**. We have:
@@ -338,7 +360,7 @@ $$
 U(s) = 0 + \gamma (\max_{a}\sum\limits_{s_{13}} P(s_{13}|s_{12},a) U(s_{13})) \\
 $$
 
-If we go **UP** we can only reach the state $s_{13}$ with probability 1, so 
+If the agent goes **UP** we can only reach the state $s_{13}$ with probability 1, so 
 
 $$\sum\limits_{s_{13}} P(s_{13}|s_{12},a) = 1 \times U(s_{13})$$
 
@@ -356,9 +378,9 @@ U_{up}(s) = \gamma U(s_{13}) = \gamma(50 + \gamma \sum\limits_{s_{23}} P(s_{23} 
 = 50 \gamma - \gamma^{2} \frac{(1-\gamma^{100})}{1-\gamma}
 $$
 
-The last relation comes from the fact that \gamma is within [0,1].
+The last relation comes from the fact that $\gamma \in [0,1]$.
 
-We use the Bellman equation to compute the Utility if the agent go down. We obtain:
+We use the Bellman equation to compute the utility if the agent goes *DOWN*. We obtain:
 $$
 U_{down}(s) = -50 \gamma + \gamma^{2} \frac{(1-\gamma^{100})}{1-\gamma}
 $$
@@ -397,9 +419,9 @@ discounting help? Does the optimal policy depend on the discount factor?</li>
 </div>
 
 **Answer** 
-**a**. If the agent is in state 1 it should do action **b** to reach the terminal state (state 3) with reward 0. If the agent is in state 2, it might prefer to do action $a$ in order to reach state $1$ and then action $b$ from state 1 to reach the terminal state. Indeed, if the agent do action $b$ in state 2, he has 0.1 chance to end in state 0 and 0.9 chance to stay in state 2 with reward -2, while, if he is in state 1 and fails to go to stay 0 it will cost the agent -1 at each attempt. So there is a trade-off to compute!
+**a**. If the agent is in state 1 it should do action **b** to reach the terminal state (state 3) with reward 0. If the agent is in state 2, it might prefer to do action $a$ in order to reach state $1$ and then action $b$ from state 1 to reach the terminal state. Indeed, if the agent do action $b$ in state 2, he has 0.1 chance to end in state 0 and 0.9 chance to stay in state 2 with reward -2, while, if he is in state 1 and fails to go to state 0 it will cost the agent -1 at each attempt. So there is a trade-off to compute.
 
-**b**. We apply policy to find out what is the best policy in each state.
+**b**. We apply policy iteration to find out what is the best policy in each state.
 **Initialization**:
 + $U = (u_1, u_2, u_3) = (-1, -2, 0)$
 + $p = (b, b)$ (initialize policy to b and b for each state 1 and 2)
@@ -423,7 +445,7 @@ $-9 \geq -18$ so $\pi = b$ in **state 1**
 + _action b_: $\sum\limits_{i} T(1,b,i) u_i = 0.1 \times 0 + 0.9 \times -20 = -18$
 $-12 \geq -18$ so $\pi = a$ in **state 2**
 
-As the action **has changed** for state 2, we need to continue the policy iteration algorithm
+As the action **has changed** for state 2, we need to continue the policy iteration algorithm.
 
 
 + $u_1 = -1 + 0.1 u_3 + 0.9 u_1$
@@ -442,7 +464,8 @@ $-9 \geq -14$ so $\pi = b$ in **state 1** (hasn't changed!)
 + _action b_: -13.5
 $-11 \geq -13.5$ so $\pi = a$ in **state 2** (hasn't changed!)
 
-As the action for both state hasn't changed, we stop the policy iteration here.
+As the action for both state hasn't changed, we stop the policy iteration here.<br>
+
 So finally, if we are in state 1 we will choose action $b$ and if we are in state 2 we will choose action $a$.
 This result match the analysis from part $a)$.
 
@@ -452,8 +475,7 @@ write the initialization to see that the equations are inconsistent:
 + u_2 = -2 + 0.8 u_1 + 0.2 u_2
 + u_3 = 0
 <br>
-discounting may help actually because it allows us to bound the penalty. Indeed, intuitively if $\gamma$ is
-near 0 than the cost incurs in the distant future plays are negligeble. Hence, the action of the agent depend on the choice of the value of $\gamma$
+discounting may help actually because it allows us to bound the penalty. Indeed, intuitively if $\gamma$ is near 0 then the cost incurs in the distant future plays are negligible. Hence, the action of the agent depends on the choice of the value of $\gamma$.
 
 
 <br><br>
