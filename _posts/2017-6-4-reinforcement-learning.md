@@ -478,4 +478,125 @@ write the initialization to see that the equations are inconsistent:
 discounting may help actually because it allows us to bound the penalty. Indeed, intuitively if $\gamma$ is near 0 then the cost incurs in the distant future plays are negligible. Hence, the action of the agent depends on the choice of the value of $\gamma$.
 
 
+<div class="blue-color-box">
+<b>17.13</b> Let the initial belief state b0 for the 4 × 3 POMDP of Figure 17.1.1 be the uniform distribution
+over the nonterminal states, i.e., $(\frac{1}{9},\frac{1}{9},\frac{1}{9},\frac{1}{9},\frac{1}{9},\frac{1}{9},\frac{1}{9},\frac{1}{9},\frac{1}{9},0,0)$. Calculate the exact
+belief state $b_1$ after the agent moves <i>Left</i> and its sensor reports 1 adjacent wall. Also calculate
+$b_2$ assuming that the same thing happens again
+</div>
+
+**Answer** I think the question is a bit unclear, even if we have the book. So we will make the assumption that the sensor measures the number of adjacent walls, which
+happen to be 2 in all the squares beside the square of the third column. Moreover, we will assume that this is a noisy sensor and that it will return the True value (
+i.e the exact number of adjacent walls) with probability 0.9 and a wrong value with probability 0.1. <br>
+As we are dealing with a POMDP and we want the belief next belief state according to the previous belief states, we will use the formula:
+
+$$
+b'(s') = \alpha P(o|s') \sum\limits_{s} P(s'|s,a)b(s)
+$$
+
+For example, if we are end in square $(1,1)$ (equivalently in state $s_{11}$), that would have meant that we were either in state $(1,1)$, $(1,2)$ or $(2,1)$ before. So, using
+the formula with these notations we have:
+
+$$
+b_1(s_{11}) = \alpha P(o|s_{11}) \sum\limits_{s} P(s_{11}|s,a)b(s) \\
+= \alpha[P(s_{11}|s_{12},a) \times \frac{1}{9} + P(s_{11}|s_{11},a) \times \frac{1}{9} + P(s_{11}|s_{21},a) \times \frac{1}{9}] \\
+= \alpha 0.1 \times \frac{1}{9} \times [0.1 + 0.9 + 0.8] \\
+= 0.02 \alpha
+$$
+
+For example for state $s_{12}$ (square $(1,2)$), we will have:
+
+$$
+b_1(s_{12}) = \alpha P(o|s_{12}) \sum\limits_{s} P(s_{12}|s,a)b(s) \\
+= \alpha[P(s_{12}|s_{12},a) \times \frac{1}{9} + P(s_{12}|s_{11},a) \times \frac{1}{9} + P(s_{12}|s_{13},a) \times \frac{1}{9}] \\
+= \alpha 0.1 \times \frac{1}{9} \times [0.8 + 0.1 + 0.1] \\
+= \frac{0.1}{9} \alpha
+$$
+
+where $\alpha$ is a constant such that $\forall i \in S, \sum\limits_{s}b_i(s) = 1$. Hence to find $\alpha$ we need to solve:
+
+$$
+b_1(s_{11}) + b_1(s_{12}) + b_1(s_{21}) + ... + b_1{s_{43}} = 1 
+$$
+
+i.e
+
+$$
+\alpha * [0.02 + \frac{0.1}{9} + ...] = 1
+$$
+
+So, I won't do all the computation here. What is important is how we can solve the problem and not the computation in itself.
+
+<div class="blue-color-box">
+<b>17.14</b> What is the time complexity of $d$ steps of POMDP value iteration for a sensorless
+environment?
+</div>
+
+**Answer** In a sensor environment the time complexity is $O(|A|^d.|E|^q)$ where $|A|$ is the number of actions and $|E|$ is
+the number of observation and $d$ is the depth search. In a sensorless environment we don't have to build branches for the
+observations so we would simply have a time complexity of $O(|A|^d)$
+
+<div class="blue-color-box">
+<b>17.14</b> Show that a dominant strategy equilibrium is a Nash equilibrium, but not vice versa.
+</div>
+
+To do that we need to write down the mathematical definition of a _dominant strategy equilibrium_ and a _Nash equilibrium_.<br>
+A strategy _s_ for a player _p_ dominates strategy _s'_  if the outcome for s is better for _p_ than the outcome for _s'_,
+for every choice of strategies by the other player(s).
+
+So, mathematically we can say that a _dominant strategy equilibrium_ can be written:
+
+$$
+\exists s_j \in [s_1, s_2, ..., s_n] / \forall p \in Player, \forall s_i' \in [s_1', s_2', ... s_n'], \forall str \in \text{[other strategies of the opponents]}, outcome(s_j,str) > outcome(s_j', str)\tag{1}
+$$
+
+where $str$ is a strategy among all the possible combination of strategies of all the opponents.
+While, in a Nash equilibrium, we only require that the strategy $s_i$ is optimal for the current combination of the opponents' strategies:
+
+$$
+\exists s_j \in [s_1, s_2, ..., s_n] / \forall p \in Player, \forall s_i' \in [s_1', s_2', ... s_n'], outcome(s_j,s_{-j}) > outcome(s_j', s_{-j})\tag{2}
+$$
+
+So (1) => (2).
+
+Yet, (2) does not neccessarily imply (1) as it is depicted by the BluRay/DVD example of the book.
+
+<div class="blue-color-box">
+<b>17.17</b> In the children’s game of rock–paper–scissors each player reveals at the same time
+a choice of rock, paper, or scissors. Paper wraps rock, rock blunts scissors, and scissors cut
+paper. In the extended version rock–paper–scissors–fire–water, fire beats rock, paper, and
+scissors; rock, paper, and scissors beat water; and water beats fire. Write out the payoff
+matrix and find a mixed-strategy solution to this game.
+</div>
+
+**Answer** We will create a table for this game with reward +1 for the winner and -1 for the loser (reward 0 for a draw).
+The table is straightforward and it is antisymmetric:
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:278px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-13#R5VhRb5swEP41PCKBabLnhKVdNU2twqQ%2BG3AA1djMOAndr5%2BNDYkLUUiUpKzNS8x357vz57NBn%2BX5efXAYJH%2BojHCFnDiyvK%2BWwC4YOKKP4m8KWTq3ikgYVmsnXZAkP1FGnQ0us5iVBqOnFLMs8IEI0oIiriBQcbo1nRbUWxmLWCCOkAQQdxFX7KYpwqdOM4O%2F4GyJNWZvcYQwug1YXRNdDoLeKv6p8w5bEJp%2FzKFMd3uQd7C8nxGKVejvPIRltQ2rKl59wesbdkMET5kAlATNhCvUVPxFIupcw5DQYZYEWUxYrVt%2Bmct65q7u6Fw2Lb8tHbJxsRwKvmbprYB9bSZMDb%2BjvJNNbE9JlWMHVGMYVEi5dM%2B7SWcJvpfrSWkohHfg6yDxLJ7cJYQo9JIcInY4ehhJ5DgW8a6TPQGWD75P%2FcShDdJ%2Bjx7XizPymoicbbp7QKOKm7r%2Buq9HFpY4D8GwdMyOFJbnXcoTxcs7%2F5xuRBjmBfigYRlYRYwGhpfZr%2BP7u9QDiXYPVMXO2W3PAfi0vGdSwa0xZ3pu9dsQZnAvmqGUazhRk12%2Fr13QlZzudd5jQzs5DF3xX%2FXd7d%2FzV2Z81Nac8w32Cc4DONtVf3Jc9M2Pf8GHXObfo2D8EFtOuSL91Ncp1%2FkxXz1k9DbpxLsExUkroSTBgdGeUDWJfCU51gArhiWnNFX5FNMpcpCKBGe81WG8TuIbhBb4VosktY2uIBF0IP6j9uqSnn1gGiOOBNVO1UjXKkZWqaTUgswNB1wd6dd0j29C0w0CLXOlrSRd2KTGGi9qV978g5qT%2FKAOBGGZWns6awoMLIzuZFRCkmCbIK2OCO9ys9R3i%2FAnjs16XO%2FOR3%2BvB76vNPZE487VbC27Smv3uIf"></iframe>
+<div class="legend">Figure 17.17.1: table for rock-paper-scissors-fire-water.</div>
+</div>
+
+To find the mixed-strategy solution to this game we will need to find the probability of playing Rock (r), Paper (p), Scissors (s), Fire (f), Water (w),
+such that $r + p + s + f + w = 1$. To do so we will firstly focus on what we need to compute if Player _A_ plays Rock. To answer this question we can draw
+a graph like this:
+
+<div class="centered-img">
+<iframe frameborder="0" style="width:100%;height:357px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-17#R7ZrPk5owFMf%2FGo%2B7AwmwclS72146szN7aHuMEDGzkdgQV%2B1f3wAJSAyz1EXZjnoRXn6%2F7yfhPXQEZ6vdV47Wy%2B8sxnQEnHg3gl9GALjAd%2BVXbtmXlsD1SkPCSawq1YYX8gcro6OsGxLjrFFRMEYFWTeNEUtTHImGDXHOts1qC0abo65Rgo8MLxGix9YfJBZLtQrHqe3fMEmWamQ4VgVzFL0mnG1SNdwIwEXxKYtXSHel6mdLFLPtgQk%2BjuCMMybKq9VuhmnuWu21st1TS2k1bY5T0aUBKBu8IbrBesYBlU2nCyZ7yB1MGS9Kgt%2BbfFbTgyXVJicTe%2BU7bcw7uMsKZSeygpzV7rBFkKjvYrS5Nky0Rc55btaStnJa2gwaIwO5NgmIvJlul0TglzWK8pKtZFTalmJF5Z0rL1G2LqlZkB2WrphmgrPXSmqYT59QOqsWD5%2FccBaGVc2DkvnY93ynms4b5gLvWuVwK5Hl3sFshQXfyyqqAXiAZRO1bTQm25pBTdryAD9tQ4r6pOq4ll5eKPXtJPitJBzJoND4Z8m7wlSO1q66DZDLkTAJZ97j1EZCEI3xfHEeEtzgciiMLSiY%2Fk3jSX7MyruIoiwjUdOt1bnm2BzlFJ8uzg6Lj7QXZ2ouUNEj3hHxM7%2B%2B99XdLzWwdC%2Ffl0VhEGhDXnrn3LuBpy3PmBPpGMxVj%2BUKcXz0WDAEk15gGx7hxqYRiCdY14J2XQ908y26aRvHFAny1pyFTUw1wjMjxWZU2EC3iY1n4FBOXjU6fC4Y%2Fbi6oeoHAqOjcslHHRVoVavuRFv4CWlr58vgsKbtwT%2BErV%2BkvCGRAqHfRGF8GlLARMo9G1K65%2F%2BdqZ6QAsdI%2BYMeUsB4tpkkdEUKGki5%2FvmQcm9IvXNKfSqmTBI6IwUud0rZkq%2BhkeoaZ30Am%2BFio6a0JwdHnnOx4EiHc%2B0J%2BvtZWGBPvKdu17RaZjHCwK5BWspSbCClTIiSJM3ZlVDkofY0z4lIhOhEFaxIHNO2NG308TQqbJ4KEB5nUZ6FOFPQU7Io%2Fcard%2BnurkE4dzygcu3vQm6brsu7iyF3XXDbdacrV73HHkK5hzMp51yBcN6Awumw9RbHDpPqnJzr%2BJeLY0EPcaz1B6T1FWxu18hJQXjBzd1DFGsVLrsC4YADhxOuhyDWKtziGoQzf4e9pHA9RLBW4bZXIByEAwrXQwBrFY5fgXCe%2BXLufMLJ2%2FoPNmUsU%2F%2BJCT7%2BBQ%3D%3D"></iframe>
+<div class="legend">Figure 17.17.2: B's actions with their outcome if A plays Rock.</div>
+</div>
+
+According to Figure 17.17.2, if _A_ chooses Rock then the payoff is : $+1 \times p + (-1) \times s + 1 \times f + (-1) \times w + 0 \times r$
+We do that for all choices of _A_ and we end with a system of equation:
+
+$$
+\text{A chooses R:} +p -s +f -w \\
+\text{A chooses P:} -r +s +f -w \\
+\text{A chooses S:} +r -p +f -w \\
+\text{A chooses F:} -r -p -s +w \\
+\text{A chooses W:} +r +p +s -f \\
+$$
+
+We then need to solve for the intersection of the hyperplanes. We find that $r=p=s=\frac{1}{9}$ and $f=w=\frac{1}{3}$.
+
+
 <br><br>
