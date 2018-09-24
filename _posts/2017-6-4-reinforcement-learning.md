@@ -1,6 +1,5 @@
 ---
 layout: post
-update: <b>Note</b>&#58; I will update this article in the coming days with more exercises
 title: Reinforcement Learning Exercises
 ---
 
