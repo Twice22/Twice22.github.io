@@ -16,11 +16,9 @@ Explain how this computation is related to the prediction task (see Section 15.2
 Markov model.
 </div>
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:343px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-1#R7Ztdb5swFIZ%2FTaTtohXGQNPLJOu2m0nTUmnXDjiA6uAMnCbdr58Bmw%2FjLigCUkq5CT42NrzP4eCDyQyudqdvMdoHP6iHycw0vNMMfpmZJjBtwH9Sy0tucYCVG%2Fw49ESj0rAO%2F2JhNIT1EHo4qTVklBIW7utGl0YRdlnNhuKYHuvNtpTUR90jHzcMaxeRpvV36LFAXIVhlPbvOPQDMTK0RcUGuU9%2BTA%2BRGG5mwm225dU7JLsS7ZMAefRYMcGHGVzFlLJ8b3daYZJKK1XLj%2Fv6Sm1x2jGOWJsDzPyAZ0QOWJ5xdl7sRUpxDEKG13vkpuUjxz2Dy4DtCC8BvpuwmD4VIkFu2YaErCihMS9HNOKHLcUoOGb49OqZguL6uVthusMsfuFNTlL7%2FAjhUFAUjyWduTAFFTDShoQ%2F%2BEW%2FpSh8R%2Bii1wiORiNgXU0kazQiFffe8CLZoxEJGlcTyRmNSEpIAmA4ke56Fok%2Ft%2B6zrWhZqXGyrZ%2BQNaSI89F4mhqzhlTpfjQqqUFrSJXkUBWZ1o%2BLX49vVSs1dt0PKBUYjUc1otOQMo1nbt4IT0PKNJ7peSM%2BDSmTboLuEJZeLOWnX9XL%2BXOgsuImyXLzBW%2FAL%2FVUVvI9P%2F9dAtkTP4m8M1nV8ZREpNKaKYmRbR1hAnYNk203KNkaSrALSroMoQtKN%2B%2BcEYADQtJlKF1Aas2I68Z0WJSQpYliiIR%2BxIsu1xlz%2BzKlELqILETFLvS8dJilzg86ADevh8CiXOFmabhZXXDTJU1dcDMnwA04VwSnS9S6AAcnAM60rghOlzt2Ac6aADhoXg%2BcHPrjEXdJqFS4ad5C9MZNl1p%2FPOIu4gY077x746bL9T%2BecBdxswfENp5VL8tWvNtoJkx9vXtos%2B6FI2%2BRrtunjkRQkoTuOZ3yLrDXWMg%2FK8mZHFHaYkwQC5%2Fr3et0ECP8pGF2q0rF7xXF7xQpE3qIXSyOKtU835GpdMRQ7GPW6CjDUlx2O1ItFt%2BSAO3T3S3BJ4FseY7e%2F5eWqlQbbw2KtpIaAPmA4qMR%2B9axxugNKsRLvcHpzxlaLDJe2xkMxRcsOzfIXoA5Jd%2Bw1SDfY6RosXj61pzDVp1jWoEDDuccfeX9xu18AhNa604h1Zyq9TWjlT7SA7kppP5QvVnlit8Q6PrK%2FaeBzrbh9dD1lf7LXjbS8Al9rrDcqO3eMV9T%2FaKx5Wu5LlYMoe4bhX74bqbKV31oQs0Ljo748mL5hX4%2BPSr%2FBQEf%2FgE%3D"></iframe>
-<div class="legend">Figure 17.1.1: (a) A simple 4 x 3 environment that presents the agent with a sequential
-decision problem. (b) Illustration of the transition model of the environment: the "intented" outcome occurs
-with probability 0.8, but with probability 0.2 the agent moves at right angles to the intended direction. A collision with a wall results in no movement.<br>
-The two terminal states have reward +1 and -1, respectively, and all other states have a reward of -0.04.</div>
+<img src="../images/rl_exercices/figure-17-1.png" width="400px" alt="Environment" />
+<div class="legend">Figure 17.1.1: (a) A simple 4 x 3 environment that presents the agent with a sequential<br>
+					decision problem. (b) Illustration of the transition model of the environment: the "intented"<br>outcome occurs with probability 0.8, but with probability 0.2 the agent moves at right angles<br> to the intended direction. A collision with a wall results in no movement. The two terminal<br> states have reward +1 and -1, respectively, and all other states have a reward of -0.04.</div>
 </div>
 
 **Answer** Well, this exercise doesn't seem difficult but we surely need lot's of time to
@@ -32,7 +30,7 @@ the next time step.
 For example, we compute the probability of reaching each position after doing one **Up**ward
 movement and then we reuse these probabilities (first column of Figure 17.2) to compute the probabilities at the second time step (second column of Figure 17.1.2):
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:400px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R3VfLcpswFP0aZtpFMkJyaLOMSdpuummm07Uw4jERiAoRk359r5CEedhTT%2By4drxBnPu%2BukI%2BHgmL9qukVfZdxIx7GMWtR%2B49jP0FDuChkReDBLcWSGUeW6UN8Jj%2FYRZEFm3ymNUjRSUEV3k1BleiLNlKjTAqpViP1RLBx1ErmrIZ8LiifI7%2BymOVGZTcoA3%2BjeVpZiMvkBVEdPWUStGUNpyHSdL9jLigzpXVrzMai%2FUAIg8eCaUQyqyKNmRct9Z1zdh92SHt05asVPsYEGPwTHnDXMYBB9OlohE0AyoSMmaykwW%2FG53X0t8sQWHd96eX627cjJRq9WJb60DFWnVFeZ6WHrnTOwkZQxzId%2BhVS5w7K8ls37eITK5XK8E5rWpmHbu3QT5Bap%2Bm1EjAnE5BOUNiPVwm40EhLvFd3qH52vIovqIBQIsKFmVUV6b4n5Xuwwzvk4guP7EdMX90A%2FH%2BHGpwPoXHmss%2Bhw9wnkP%2F41uPCrr2j%2BsO4X%2F6m1Q8a92ZGJ5yo%2FEJNvrzcd3hhTOtm2rqLRFw03VfeTG%2BpbqrFyF9Q0xdDgfR2M%2B6sCXSmQzLKaZs1wDh138p9v8I9Of79swa%2BD87r48uOaTzr64VXQeLt45xQRtBDj0CB2wE2vfwXOZGaHDbX3GNGzbicDyiFFhzCcAzVXAAfFjWSoonFtpLoRQlaC6TnPMJJJ6ZTHjHwLQUkJjWGYutG8uOmIQIOxmW3%2FM2oMNMFExJKAG1jhoaC0uENVvBI9aE8Serkg0YZU81qWWyae95Q%2BdgYRmde90wx042YOfk4S8%3D"></iframe>
+<img src="../images/rl_exercices/17.1-table.png" width="250px" alt="Table" />
 <div class="legend">Figure 17.1.2: occupancy probabilities at each time step for the first 2 movements.</div>
 </div>
 
@@ -46,8 +44,9 @@ $$
 So finally we can come up with the full table, with the asked occupancy probabilities in the last column:
 
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:520px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R5Vhdk5owFP01zLQP24GED32sdrt96Ut3On0OEoHZQGiIu25%2FfRMJX6JIBHVsfTGee3Nzc%2B7l4hwDLpPtE0NZ9J0GmBjADLYG%2FGIAYNnAFV8SeS8Qd66AkMWBcqqB5%2FgPVqCp0E0c4LzlyCklPM7a4IqmKV7xFoYYo29ttzUl7VMzFOIO8LxCpIv%2BigMeqVuYZo1%2Fw3EYqZMdoAw%2BWr2EjG5SdZwB4Hr3KcwJKkMp%2FzxCAX1rQPDRgEtGKS9WyXaJiaS2ZK3Y9%2FWItUqb4ZQP2QCLDa%2BIbHCZsUvE1gVHviBD3IiyALOdzf29kXktrHopHN4qfiq7pMlpOeX8XVFbghxv%2BQMicZga8LOspMhYnCPybUaVljKcskSK9wOmIteHFSUEZTlWgctfjXzcUH0XV%2FWp6NN9kHWQQDZXkXHjImXix6IL8uXOSWL5DQAlmVikfp4Vl%2F%2BZSR46eJWEf%2F%2BJHTnzx64h%2Fr2AEux24VR9WeXwQTzPS%2BvjpVvF%2FGRNG84EJ%2BPVrq6G78zWcLbd%2FjSuWURwhSLOpg0HhnMNnNNnV76WN9zZmplOfxoaReyrDzyvPsOfn9LT1ejg2XCiTGjrPEfOieJOwCo4f3Tthewce%2FqCcx3iNHjztIbVdUge1bpnkzyiOo41%2FPVgeUDjIXDB5SmHt%2Bzr4XPG9OClhocLvGuQfOYr83Z9beqUR6s%2Btm33e09E%2BZ2NkhG1ss15fxO3h9B8fvG5Yt9sroxqeZ3p7GhMmZnrTfbvvY%2FyO5sy48aTBv%2BWLQWcy%2FP%2Fv4ycEYWDwDvxv%2FNgLSR4SD6TeKEgljhoyYBA6n8Cj3hCBGCJZc4ZfcFLSqiUG1OaCs%2FFOiZkD6KvmK3JTjWVVoEEKI9woMIoRRMzccJRVdSqtNZk%2B4RpgjkTVzDVBlups0q8hkolrZXOWvCNGiqw7ThKgVbqc1hFriVYsVAqbPmzVnt3toaiDh%2F%2FAg%3D%3D"></iframe>
-<div class="legend">Figure 17.1.3: Occupancy probabilities at each time step. The probabilities in the last column are the answer to the question.</div>
+<img src="../images/rl_exercices/17.2-table.png" width="400px" alt="table 2" />
+<div class="legend">Figure 17.1.3: Occupancy probabilities at each time step.<br> 
+					The probabilities in the last column are the answer to the question.</div>
 </div>
 
 This computation is related to the prediction task for a HMM in the sense that we only need to consider the probabilities of the previous positions to compute the probabilities of being in the next positions.
@@ -59,9 +58,11 @@ in Figure 17.2.1, and calculate the fraction of time the agent spends in each st
 if the policy is executed forever. (Hint: Construct the state-to-state transition probability
 matrix corresponding to the policy and see Exercise 15.2.)
 </div>
+<br>
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:346px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-2#R7ZxBk5owFMc%2FDTPtYWeEAK7H1W7bS2c63UPPESIyi8RCXLWfvgESEIhu6kAwKx524SUk8P89X%2FJCRgMsNodvCdyuf2AfRYY18Q8G%2BGJYFphO6d%2FMcCwMzswtDEES%2BoXJrAwv4V%2FEjBNm3YU%2BSmsVCcYRCbd1o4fjGHmkZoNJgvf1aisc1XvdwgC1DC8ejNrW36FP1oXVdiaV%2FTsKgzXrGfCCJfRegwTvYtadYYFV%2FimKN5A3xeqna%2Bjj%2FYkJPBtgkWBMiqPNYYGiTFmuWnHd1zOl5W0nKCYyF1jFBW8w2iF%2Bx%2Fl9kSOXYr8OCXrZQi8731PaBpivySaiZyY9TEmCX0uRALWswiha4Agn9DzGMb1sznpBCUGHs3dqls9PvQrhDSLJkVZhFzwyxZhDAXa6r%2BjwGusTMNwGmT8EZbuVKPSA6SLWCGijkekOJpKtjUiWPZhIjjYiAWswkVxtRGqEJNNUJ9K0Z5HouDXLP2XNkxI3%2F%2FQTslSK%2BKiNpzVjlkqVZtqo1AxaKlXiXWkgUzNszRSqZGqjUiswqZRJn2l5KzKplEmfmXkrNKmUSTQ3dyOSPSymt3%2Bql%2Ftnh3nBQ5qn5U%2B0An3UQ1VIj4Li%2F9zkLdGbKBrjRR3PRlgWLZiNTPJPR5iAU8PkOC1KjoAS6IKSKDnogtLDB2dkAoWQRMlJF5CkGVHdiAhLI2QJohiMwiCmpx7VGVH7PKMQejB6YgWb0PezbuYiP%2BhiRJ3UY6A1bYOzBeDsLsCJEqYuwFn3AO5xQHCiJK0LcOAOwFnugOBEeWMX4Ow7AAfs4cDxmeo4xl0DrsFNsALRGzdRbj0OcVdxMwXr3b1xEyX74wh3FTdHITbR4kM3WXXRypIbfn1KPxtZVHbhJpON1cpm0yXfZfPqD8zcnNYTQMDXgU6ol1%2FgrjNAmRedKPafsj0ImUgRTNPQu6T0aXos%2F1Km6BT5rW0M76r4TprMbQmKIAnf6s2LlGM9%2FMRh7vXlF7MOadrQPsW7xEPsokr%2BVjvlEsyZdghMAkRa7eQYy4eWIyvxdnYk2yZr2rNu0LYa6pCtxEvlkS1l20wYOev%2FZdtqyHH6YgtE%2BUqDbbYla3t26GGbyOCSV59IYyldualbeyLiCrC5HYxIQOKdmtC3U8qA3ILLg4lYXFXxrIauiUTa43sbmIAoQRgBvw%2F4KCYjS%2FTMZroeAEu8x%2Bw7gpnTASPYtXPq23FwMEawS4CvnVrfO2BtIpjE%2FLrvCDarP6xpKQxgEtsxb9y%2F3TGAXQIssVV0BKxzAJPY5ao4gNnq4hfvSmP3no3x6xJg%2FdcIhgGsS%2FyyJdYIVKeQKgOYRAZ92%2F5dABwD2DnA2i8RDARYmwAmsUSgeAKmcgnMvvYF1e34tzMGsEuAtV8iGAjwjQYwelr9SkNRvfohDPD8Dw%3D%3D"></iframe>
-<div class="legend">Figure 17.2.1: Optimal policies for $R(s) > 0$. In the squares where there are 4 arrows, the agent can decide to go in any of these directions.</div>
+<img src="../images/rl_exercices/figure-17-2.png" width="300px" alt="Environment" />
+<div class="legend">Figure 17.2.1: Optimal policies for $R(s) > 0$. In the squares where there<br>
+					are 4 arrows, the agent can decide to go in any of these directions.</div>
 </div>
 
 
@@ -71,7 +72,7 @@ must note that, again, if we choose to go right the agent will go right with pro
 down or up with probability 0.1. Having said that our Transition matrix looks like:
 
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:481px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.1-table#R7VlLc5swEP41zLSHZECymfhY0yS99JRDzwLJwEQgR8gx6a%2BvZEk84njih4xJGl%2BAb7UPLauV8OfBqKjvOVpmvxkm1AM%2Brj340wMgmIBQXhTyopFwZoCU59gMaoGH%2FC8xoG%2FQVY5J1RsoGKMiX%2FbBhJUlSUQPQ5yzdX%2FYgtG%2B1yVKyRbwkCC6jf7Jscg0OvP9Fv9F8jQznqdWEKPkMeVsVRp3HoCLzU%2BLC2RNmfFVhjBbdyB468GIMyb0XVFHhKrU2qxpvbsd0iZsTkqxjwLUCs%2BIroiNOKRSdS5QLJMhZ8Q4JnwjC59WKq550N7KAesmP41cZWPaG1SJF5NaCwpSiytE87T04A%2F1JmXE0o%2BMt2tVSaw5I8lM3t8Q6VivEkYpWlbEGLZPnXjC1Fz1VGMm6%2FQ1yLcQrIpLR9yZiA18l3WZfKXpxFZsgW%2FyHUTB946PeBi%2F4Hi%2Fu0xC9yYn7k2qhAP3E3dsUkUJ3ZoE7k3C40wqcHtVulqnQ68t%2Fzpwa%2B7m0PexlblzKe4z1UvFNpTiUMV7QoM%2Bxu%2F%2BWTuolsG75sZf9Z9X8YBaPvumf%2FmeNUANfqIG6qB23J3uRrgD%2Btez0c5i9IoOiuvkc%2F5HWKtfHe1sm5qbD7oRNqZLxDbew917eXPUidx8eI%2B1XX%2BM%2Bh3BSdBBNbn7G2f8RfE%2FKLr7Rna08X0V1%2BUb0Aku9u1cR218CnyLZFG45pksDnpkEVAskcQzUVAJBPK2Epw9kohRpkipkpVy5HyRU%2FoKYs%2BEL%2BiGW1NSiWBUZQQbM4b3Ilx62MmdBQ0jV9T3hBVEcDkF3yhYDs9QnJZLa%2FkwcBOaIVmHK5xMp4anNBxl2lhuiTp5Y7g6%2B9hyghtZh3eFt%2F8A"></iframe>
+<img src="../images/rl_exercices/17.2-transition-matrix.png" width="600px" alt="Transition matrix" />
 <div class="legend">Figure 17.2.2: Transition Matrix</div>
 </div>
 
@@ -272,7 +273,7 @@ on a two-dimensional grid, using $sA$ and $sB$ as “coordinates.”
 </ul>
 </div>
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:143px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-7#R5ZhNs5sgFIZ%2FjcvOCKhXl4nNbTddZdG1UaLMRUkJqaa%2FvkcFPxIzt52aeidxI7zn8OH7MApaJMyrLzI6ZN9EQrmF7aSyyGcLY4RdBLdaObeKh5xWSCVLdFIvbNkvqkVbqyeW0OMoUQnBFTuMxVgUBY3VSIukFOU4bS%2F4eNRDlNIrYRtH%2FFr9zhKVtapj273%2BlbI0MyO7OrCL4rdUilOhh7Mw2TdXG84j05XOP2ZRIsqBRDYWCaUQqi3lVUh5ba1xrW33eiPaTVvSQv1JA9w2%2BBnxEzUzbualzsaKMmOKbg9RXNdLwG2RdaZyDjUExaOS4q0ziYCyZ5yHggvZtDfPbzIHEbu5IKInQaWi1c0HQZ09sOqoyKmSZ0ipDJq2hV5vRFfLHp6vpWzA7UVrkV4uaddv7xkUtG3TFpJHsRDhxTx0HsVDbC%2FmofswHvqLeehNeOhxVTshYPJDM70fJ2ECn47NB2wFCcg%2FVH0QSml9R6YbmEDbU6tfEQLX1BQUY3UhCnrBRUsRZ2kB1RhcpqCvawYMvmgrHchZktTDrKdWwQzYvDG17m1SDr%2Bf19jwDNhe7oQNPwE25CzHzb8TN%2FIE3DBejltwJ27OE3Aj9nLczOnqH8BhbwwOTmBmE9CL3ZnnErAZbWeE1YD47jLrvVUADwfnwVus%2FmZj84qCMAimNjY733XcmTY27sW%2Bxr0C702A9%2BYAjz4a%2BPXHAL8KQmezngLvxT7d7Wd6Vwf%2FizxU%2B58HTWzwg4ZsfgM%3D"></iframe>
+<img src="../images/rl_exercices/figure-17-7.png" width="250px" alt="Environment" />
 <div class="legend">Figure 17.7.1: The starting position of a simple game. Player A moves first. The two players take turns moving, and each player must move his token to an open adjacent space in either direction. If the opponent occupies an adjacent space, then a player may jump over the opponent to the next open space if an. (For example, if A is on 3 and B is on 2, then A may move back to 1.) The game ends when one player reaches the opposite end of the board. If player A reaches space 4 first, then the value of the game to A is +1; if player B reaches space 1 first, then the value of the game to A is -1.</div>
 </div>
 
@@ -314,7 +315,7 @@ intuitively why the value of $r$ leads to each policy
 </ul>
 </div>
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:334px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-8#R7ZnBlpowFIafhuWcQxLEcTnaabvpykXXESLkTCA2xgH79L2YAKLxnFkYnI6ygfy5ucH%2FCwmRgCyK%2Boeim%2FyXTJkIcJjWAfkWYIzwBMGpUfZGiVFkhEzx1Ab1wpL%2FZVYMrbrjKdsOArWUQvPNUExkWbJEDzSqlKyGYWsphr1uaMbOhGVCxbn6m6c6NyqZhL3%2Bk%2FEs1ycVK5q8ZUruSttdgMn6cJjqgrapbPw2p6msjiTyGpCFklKbq6JeMNFY27pm2n2%2FUNvdtmKl%2FkgDbBq8U7Fj7R3HAprO1xIywA3qvfUk%2FrOTbcXT9kDsBQKgt7qvhKusOas2DXRtMhnd%2FuouKa5yrtlyQ5OmXMFggqBcFwJKCC63Wsm3DgFpuudCLKSQCsqlLFmX9J0pzeqLPqDOXRi0TBZMqz2E2Abx1LSwwzWyCaqe%2FbMllh9hbzVqR1vW5e0thwvrupsA8UTgCf1nCFB0MwaRg8HnNAnjm5k0eQxU51yB8HgM4i%2FBwAS1IiyR4eHwM42MiWf6JfB4mKbGhPD8gOCcp3A4HoPZg4F7NhoTQruXelA4nY5GpYA8UfgwBPBNu3w%2F8dlhPRU8K6GYgM8M9HlDgcMu%2BcVWFDxNm27mLtBXADcLh9xm59wiB7foGtx8bY3xHXBD0xuC87WjJncADk9uCO7yDnPVe30NkgGeN4vjBZqdvPr06xoZrmuTc1ixA1Z8DVi%2BtqL3sKzhk4esfVMb4yHz9Wp%2BD8vaCTfk%2BPfNFzfs62X%2BLla1IbfYGzYo9t9uDnVH38fI6z8%3D"></iframe>
+<img src="../images/rl_exercices/figure-17-8.png" width="200px" alt="Environment" />
 <div class="legend">Figure 17.8.1: The reward for each state is indicated. The upper right square is a terminal state.</div>
 </div>
 
@@ -322,7 +323,7 @@ intuitively why the value of $r$ leads to each policy
 different policies for all the different cases _a_, _b_, _c_, _d_:
 
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:543px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=17.8-policies#R7V1Nc6M4EP01PuxhqhACjI9Jdnf2MlVblcOeCSg2Ndh4MUmc%2FfUrDPJHi1k0WiRVWnEqFVuCNrwnPdStlrKgD9vj1ybbb77VBasWYVAcF%2FTXRRiSKEz4n67kvS9JVkPBuimL4aBLwWP5DxsKg6H0pSzY4ebAtq6rttzfFub1bsfy9qYsa5r67faw57q6%2FdZ9tmZSwWOeVXLpX2XRbvrSOA4u5X%2Bwcr1pQcVTln9fN%2FXLbvi6RUifT6%2B%2BepsJU8Pxh01W1G9XRfS3BX1o6rrt322PD6zqoBWo9ef9%2FoPa82U3bNeqnBD2J7xm1QsTV3y6rvZdQPG2KVv2uM%2Fy7vMbp3tB7zfttuKfCH%2BbHfY9Ac%2FlkXGr94e2qb%2BfUaO85Lmsqoe6qpuTQfqc5izPz0de1TylccSR5GfUu%2FZxuIThnl5Z07LjD2%2BTnMHjbZLVW9Y27%2FyQo%2BCnP2NojXRA%2F%2B1CbTIUba5YFWXZ0JjWZ7sXRPmbAdRxgKkLgPsWNwJwcHrxmhkwJcQZqNEIqEnVDg3nBt3k75daVHw5nHTmjh%2FAb%2FR4qeTv1v3f%2B06AelP8Inpros44bXH3M0ZbcnrNRNvSGW0x2r4A9GVlD9MELaZQXyyCusQL6tIZqClaUEHvJ7E9UFdoQYXd3yaqwgvBCOvSIaxkGla2K%2B46%2F41%2FyqvscCjzW1xlGHsTrJAcuklIrm45HrllUdawKmvL11vzYzgM3%2FBnXZ4GoQLxBCAeAigP9UuTs%2BGsa18NGgonDLVZs2atZOhEy%2Fm21ZhS8AvxMwXbvC5R0M6MPCm4l%2Fh5IulcPQoampGpMZ8VPVMhBHi50mQqnTA0I1MKbio%2BptLoBl%2FdHgXMROb6k4Lji54lAvHVpIkE5nhS8KXR8xRCfHV5MjiSUHDP8fEUBhMdQZUoyZA55aNOQn7TczbDVf0f55S6m1KgeGN%2B1F3En46pyudMjRpvEXXHG964ItQYixFw8UzAiKq7eYVIIar4QVGFCmAT1RAtqlABbIbAI7z5IFACrMKqEF37oLBCDbAKq8IwAJ9TGIHwsrb3Dg0ZdN9jhaEFfqa042GSIXMBsdjJE8CK%2By5lWVpMLcP7AJDzLC3COjYX8um%2F62ZaWiQOb14gVJnEIqp4g4SSytiEFW9qoKQBNmHFG8QDGhCF9lBNFEbaHxRVqAFWYcUbxYMaYBVWL9MkwgAgvtSe1gWGKDA0n1%2BYfCZKdLH8eRIlKCR8Rp68TJSAPOl2KGjHXH9aOnlOO0qTsLg0Cu9zWs6TsAhrOALrZ6BFN1HCInGIJ%2FQchgSWeOO5kszYhBXvEmxJBGzCijfaCkXApvO6xBtuhSJgFVa84VYoAlZh9TNZAqzwoisApapnSNMJQ%2FO5hmJxk%2BdMQd9bmylzTnw65hbhZwoAHIk8rJ9Oa4kmDM3IlJcrkaNkpvglNGQwgJkquFb4mKLRTExBQyaZ8nIlssSUbqxZMmTuObXyckRBpzYkUWZqaouUGZnyU%2F2mNrrQZsrcjhkrL6euaZqCrkD0mIrCCUMzMuXl1DV0g2LdQXr433Zm5MnLqWuofbq7OkHpM7eYY%2BVlJAn2J%2B29gmCHMrlXUODlwI%2FAuIKuMwUNGXSmSKCQuYCPKrgxiTZV0JBRqkIfqZJ6la7jKxky5%2FiSwMu4XzJTKJ0E1kLpRPRfv5iCWzzSUHNUATedlAzNSZWXgT84btOe9oAjSYPTHiTwM0ox1RmUqZrqnnNSNRam%2BMkcy3A8x7K38iQKsl%2BuMi6fLocFDf892Q9OnoNaVmbLju1YgxE5FLt6x0DCxVCUVeV617U63moYL7%2FvkivKPKvuhoptWRTd19yP5XsMaM24TisU6RlXrfS8s%2Bt1M4Xr%2BHXyMUgww%2BZjanw%2FTfP9hXpAN0wWs8z3WNjEFd8e9u5YuJZTbMNBrhbbo%2F%2BjwRXbPnZuy3TL3gvBhC7cc4jIyhmNjOfgRKketvIYVh7EfmBsoQ9oF1z5qURRgZs6BFe0U6yqICT2PJMhS645bOXIHi5VANiOPM7MYSs%2FzXCJwi22I1sWmoNWjp2hkoTzwmYnmoB8pCCBa1UU5PgUKlGA4FpVBTkWhFoVosgmuPIQF7Uq0NQiuMJ79kUV6MiSPXPgyjkhqGSBOFQFKvtmqFSBuBQF2TdDJQoQW6uagDzSCKdcrQZsqOydoRIFmHpgF1zZO0OlCnA5q11wZe8MmSzQ27FCmlgEV3bPkMmCS3CRz0BEkUNwR%2F6nFypZAPOSUbq0iK3snaFSBTgvaRdc2T1DpQpwXtIguPxjU3c5JOe6r%2Fw2Nt%2FqgnVH%2FAs%3D"></iframe>
+<img src="../images/rl_exercices/17.8-policies.png" width="300px" alt="Policies" />
 <div class="legend">Figure 17.8.2: policy for each value of r. The red square are the square were the reward is equal to <b>r</b>. The white squares have reward equal to <b>-1</b>, the gray square is the final square with reward <b>+10</b></div>
 </div>
 
@@ -347,7 +348,7 @@ situations in which one must weigh the value of an immediate action versus the p
 continual long-term consequences, such as choosing to dump pollutants into a lake.)
 </div>
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:323px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-9#R7ZxRb5swEIB%2FTR47YRtI8thk3fayl6XSngm4gEpwRkiT7NfPBAMBXCnqOLsOQaqCz8ZG913O57PTCVlujt8zbxv9ZAFNJtgKjhPydYIxwg7iH4XkVEpcZJeCMIsD0agRrOK%2FVAgtId3HAd21GuaMJXm8bQt9lqbUz1syL8vYod3shSXtUbdeSHuCle8lfenvOMijUjq3rEb%2Bg8ZhJEYmjqhYe%2F5rmLF9KoabYPJyvsrqjVd1JdrvIi9ghwsReZqQZcZYXt5tjkuaFKqttFY%2B9%2B2d2vq1M5rm1zyAywfevGRPqzd2E%2F7o4oXxHvgL5iehE%2FfPnlUVD7szsUfegI92bCr5XVh%2BLgqVlF3x4cveqjrc6hgfojinq63nF%2BUDNyjeKMo3CS8hfrvLM%2FZaYyDFK8RJsmQJy3g5ZSmtO32jWU6P7%2BoC1RrmhkvZhubZiTcRD7iCiTBZIoqHhv9MiKIL9JXMExYX1v02auc3QvNyCgSIwgMyDAGytTGw7wyES8DaGDgSBp9TSdOZNiW5UIZqusNGc3UQpsCWyuOG%2BfmqW17UuOcLxuMipE6J1VD%2FYcrIlpny6vnx17PhxqySAwJyKTwKNG32630fFDoVBBiNm8ahG4Uo5SCLxz%2BnmrpxiFI1QYXMysy1WZ1LZlnrfA2Eae60MGHk9DA5EkxkCEyyqNqglY02SI5CRlBB%2FdWIuNpyGZWOy5J4MS%2BJw5QXfa5myuWLAkLse8mjqNjEQVAMs5CZwQDcOi6wLl9wsyXc7CG4ydYBQ3DDI%2BCGXI3gZkDgyAjAYVsjuDkQOHsE4AjWB64a%2Bj7FfcRVdrhJkgNg3KCSA6OY4jqrM0maGIwbVDJhDDNch5ujENt9H6qarKw2BIVbLGB7LAYm4roYVGaYbmebpZfOVJjex7K1jpFa7NmiQi0SqPnUOMc81eeYCdRJGQMdcxeDSsdMZFGKkS6lp0WVLsXwzPyAm9%2F6zhyRe6z3LgalLuVmYr2eFlW6FKi8tnEuxdF3lJRA5agNdCldDCpdSjW0%2BS6lp0WFLsUeYOHjyq257GVdCb7wpuKvtvF1t7Uhdk%2BuOJhTb4AOjmyAZZIpyNQlH7pEJd9BOKIDpIVNIQr3JZTEAHDEoH%2FMoG6JfIXhg00%2BcKszCLs3eMvLvuJsgIzyEJteNtQxqvlsBOQcjeeobKj1Jndrt0%2FO1XiQyoZapKIio3rz6KYaj1JVxxEA0I3hMNXMUoaOF5vf8p%2FrLv5fAnn6Bw%3D%3D"></iframe>
+<img src="../images/rl_exercices/figure-17-9.png" width="600px" alt="Environment" />
 <div class="legend">Figure 17.9.1: 101 x 3 world for Exercise 17.9 (omitting 93 identical columns in the middle). The start state has reward 0.</div>
 </div>
 
@@ -536,7 +537,7 @@ the number of observation and $d$ is the depth search. In a sensorless environme
 observations so we would simply have a time complexity of $O(|A|^d)$
 
 <div class="blue-color-box">
-<b>17.14</b> Show that a dominant strategy equilibrium is a Nash equilibrium, but not vice versa.
+<b>17.15</b> Show that a dominant strategy equilibrium is a Nash equilibrium, but not vice versa.
 </div>
 
 To do that we need to write down the mathematical definition of a _dominant strategy equilibrium_ and a _Nash equilibrium_.<br>
@@ -571,7 +572,7 @@ matrix and find a mixed-strategy solution to this game.
 **Answer** We will create a table for this game with reward +1 for the winner and -1 for the loser (reward 0 for a draw).
 The table is straightforward and it is antisymmetric:
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:278px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-13#R5VhRb5swEP41PCKBabLnhKVdNU2twqQ%2BG3AA1djMOAndr5%2BNDYkLUUiUpKzNS8x357vz57NBn%2BX5efXAYJH%2BojHCFnDiyvK%2BWwC4YOKKP4m8KWTq3ikgYVmsnXZAkP1FGnQ0us5iVBqOnFLMs8IEI0oIiriBQcbo1nRbUWxmLWCCOkAQQdxFX7KYpwqdOM4O%2F4GyJNWZvcYQwug1YXRNdDoLeKv6p8w5bEJp%2FzKFMd3uQd7C8nxGKVejvPIRltQ2rKl59wesbdkMET5kAlATNhCvUVPxFIupcw5DQYZYEWUxYrVt%2Bmct65q7u6Fw2Lb8tHbJxsRwKvmbprYB9bSZMDb%2BjvJNNbE9JlWMHVGMYVEi5dM%2B7SWcJvpfrSWkohHfg6yDxLJ7cJYQo9JIcInY4ehhJ5DgW8a6TPQGWD75P%2FcShDdJ%2Bjx7XizPymoicbbp7QKOKm7r%2Buq9HFpY4D8GwdMyOFJbnXcoTxcs7%2F5xuRBjmBfigYRlYRYwGhpfZr%2BP7u9QDiXYPVMXO2W3PAfi0vGdSwa0xZ3pu9dsQZnAvmqGUazhRk12%2Fr13QlZzudd5jQzs5DF3xX%2FXd7d%2FzV2Z81Nac8w32Cc4DONtVf3Jc9M2Pf8GHXObfo2D8EFtOuSL91Ncp1%2FkxXz1k9DbpxLsExUkroSTBgdGeUDWJfCU51gArhiWnNFX5FNMpcpCKBGe81WG8TuIbhBb4VosktY2uIBF0IP6j9uqSnn1gGiOOBNVO1UjXKkZWqaTUgswNB1wd6dd0j29C0w0CLXOlrSRd2KTGGi9qV978g5qT%2FKAOBGGZWns6awoMLIzuZFRCkmCbIK2OCO9ys9R3i%2FAnjs16XO%2FOR3%2BvB76vNPZE487VbC27Smv3uIf"></iframe>
+<img src="../images/rl_exercices/figure-17-13.png" width="400px" alt="Table for rock paper scissors fire water" />
 <div class="legend">Figure 17.17.1: table for rock-paper-scissors-fire-water.</div>
 </div>
 
@@ -580,7 +581,7 @@ such that $r + p + s + f + w = 1$. To do so we will firstly focus on what we nee
 a graph like this:
 
 <div class="centered-img">
-<iframe frameborder="0" style="width:100%;height:357px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Figure-17-17#R7ZrPk5owFMf%2FGo%2B7AwmwclS72146szN7aHuMEDGzkdgQV%2B1f3wAJSAyz1EXZjnoRXn6%2F7yfhPXQEZ6vdV47Wy%2B8sxnQEnHg3gl9GALjAd%2BVXbtmXlsD1SkPCSawq1YYX8gcro6OsGxLjrFFRMEYFWTeNEUtTHImGDXHOts1qC0abo65Rgo8MLxGix9YfJBZLtQrHqe3fMEmWamQ4VgVzFL0mnG1SNdwIwEXxKYtXSHel6mdLFLPtgQk%2BjuCMMybKq9VuhmnuWu21st1TS2k1bY5T0aUBKBu8IbrBesYBlU2nCyZ7yB1MGS9Kgt%2BbfFbTgyXVJicTe%2BU7bcw7uMsKZSeygpzV7rBFkKjvYrS5Nky0Rc55btaStnJa2gwaIwO5NgmIvJlul0TglzWK8pKtZFTalmJF5Z0rL1G2LqlZkB2WrphmgrPXSmqYT59QOqsWD5%2FccBaGVc2DkvnY93ynms4b5gLvWuVwK5Hl3sFshQXfyyqqAXiAZRO1bTQm25pBTdryAD9tQ4r6pOq4ll5eKPXtJPitJBzJoND4Z8m7wlSO1q66DZDLkTAJZ97j1EZCEI3xfHEeEtzgciiMLSiY%2Fk3jSX7MyruIoiwjUdOt1bnm2BzlFJ8uzg6Lj7QXZ2ouUNEj3hHxM7%2B%2B99XdLzWwdC%2Ffl0VhEGhDXnrn3LuBpy3PmBPpGMxVj%2BUKcXz0WDAEk15gGx7hxqYRiCdY14J2XQ908y26aRvHFAny1pyFTUw1wjMjxWZU2EC3iY1n4FBOXjU6fC4Y%2Fbi6oeoHAqOjcslHHRVoVavuRFv4CWlr58vgsKbtwT%2BErV%2BkvCGRAqHfRGF8GlLARMo9G1K65%2F%2BdqZ6QAsdI%2BYMeUsB4tpkkdEUKGki5%2FvmQcm9IvXNKfSqmTBI6IwUud0rZkq%2BhkeoaZ30Am%2BFio6a0JwdHnnOx4EiHc%2B0J%2BvtZWGBPvKdu17RaZjHCwK5BWspSbCClTIiSJM3ZlVDkofY0z4lIhOhEFaxIHNO2NG308TQqbJ4KEB5nUZ6FOFPQU7Io%2Fcard%2BnurkE4dzygcu3vQm6brsu7iyF3XXDbdacrV73HHkK5hzMp51yBcN6Awumw9RbHDpPqnJzr%2BJeLY0EPcaz1B6T1FWxu18hJQXjBzd1DFGsVLrsC4YADhxOuhyDWKtziGoQzf4e9pHA9RLBW4bZXIByEAwrXQwBrFY5fgXCe%2BXLufMLJ2%2FoPNmUsU%2F%2BJCT7%2BBQ%3D%3D"></iframe>
+<img src="../images/rl_exercices/figure-17-17.png" width="400px" alt="Outcome if A plays rock" />
 <div class="legend">Figure 17.17.2: B's actions with their outcome if A plays Rock.</div>
 </div>
 

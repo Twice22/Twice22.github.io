@@ -107,7 +107,7 @@ $$
 $$
 
 ## Vectorized implementation
-Now that we understand how the gradient of the hinge loss function is computed. We will implement it using Python. As the unvectorized implementation is quite straightforward, I will only derive the vectorized implementation. The full Python code can be found in the *linear_svm.py* file.
+Now that we understand how the gradient of the hinge loss function is computed. We will implement it using Python. As the unvectorized implementation is quite straightforward, I will only derive the vectorized implementation. The full Python code can be found in the [*linear_svm.py*](https://github.com/Twice22/CS231n-solutions/blob/fba2891caf54f8553f6c14ffe3d15b144ddeb93b/assignment1/cs231n/classifiers/linear_svm.py) file.
 
 ### Forward pass
 Firstly we will focus on the implementation of the forward pass. In other words, we will derive a formula to compute the loss using a vectorized implementation. For a better understanding, I created a picture:
@@ -117,7 +117,16 @@ Firstly we will focus on the implementation of the forward pass. In other words,
 <div class="legend">Figure 1: Hinge loss - Forward pass vectorized implementation</div>
 </div>
 
-According to Figure 1, in python we can write:
+According to Figure 1, we can compute the margin as follow:
+
+$$\text{margin} = \max\{0, XW - XW[[1...N], y] \}$$
+
+Then we need to set the margin in the $y_i$ position to $0$ before summing out
+(because the sum is over $j \setminus${$y_i$}):
+
+$$\text{margin}[[1...N], y] = 0$$
+
+Finally we just have to sum and add the regularization term. In python we can write:
 ```python
   scores = X.dot(W)
   correct_class_score = scores[np.arange(num_train), y]
@@ -166,7 +175,7 @@ $$
 Now that we see the shape of the matrix is is easy to write **the unvectorized naive** implementation. We just need to:
 
 + build a matrix of zeros having size (D,C) (same size as W)
-+ assign $x_i$ to each column of this matrix if ($j \neq y_i$ and $(x_iw_1 - x_iw_{y_i} + \Delta > 0)$)
++ assign $x_i$ to each column of this matrix if ($j \neq y_i$ and $(x_iw_j - x_iw_{y_i} + \Delta > 0)$)
 + assign $-\sum\limits_{j \neq y_{i}}1(x_iw_j - x_iw_{y_i} + \Delta > 0)x_i$ to the $y_i$ column
 
 ```python
