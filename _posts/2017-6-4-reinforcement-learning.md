@@ -3,11 +3,8 @@ layout: post
 title: Reinforcement Learning Exercises
 ---
 
-In this article, I present some solutions to reinforcement learning exercise. These exercises are
-taken from the book "Artificial Intelligence A Modern Approach 3rd edition". I will gradually
-update this post with new solutions while I'm learning about the field. I don't pretend all my
-solutions are 100 % accurate but I think they make sense. If you do find some mistakes, please
-let me know.
+In this article, I present some solutions to some reinforcement learning exercises. These exercises are
+taken from the book "Artificial Intelligence A Modern Approach 3rd edition".
 
 <div class="blue-color-box">
 <b>15.1</b> For the 4 × 3 world shown in Figure 17.1.1, calculate which squares can be reached
