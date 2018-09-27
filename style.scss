@@ -7,6 +7,7 @@
 
 @import "reset";
 @import "variables";
+@import url('https://fonts.googleapis.com/css?family=Lora');
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -31,10 +32,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
-  color: $darkerGray;
-  font-weight: bold;
-
   line-height: 1.7;
   margin: 1em 0 15px;
   padding: 0;
@@ -317,20 +314,35 @@ sup {
   margin-bottom: 20px;
 }
 
+.question-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-family: Lora;  
+}
+
 .text-80 {
 	font-size: 80%;
 }
 
 .centered-img {
 	text-align: center;
-  width: 1200px;
-  transform: translateX(-140px);
+  max-width: 100%;
+  vertical-align: middle;
 
   .legend {
     font-size: 90%;
     margin: 0 auto;
     width: 80%;
   }
+
+  &.framed {
+    padding: 10px 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.1); 
+  }
+
 }
 
 .center {
@@ -342,6 +354,8 @@ sup {
   font-size: 30px;
 }
 
-.post, .entry { 
-  font-family: 'Luda', Monaco, Monospace;
+code.highlighter-rouge {
+  background-color: rgba(0,0,0,.05);
+  border-radius: 3px;
+  padding: 2px 4px;
 }
