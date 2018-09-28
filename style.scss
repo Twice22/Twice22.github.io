@@ -33,7 +33,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
-  margin: 1em 0 15px;
   padding: 0;
 
   @include mobile {
@@ -43,9 +42,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 30px;
-  a {
-    color: inherit;
-  }
 }
 
 h2 {
@@ -115,6 +111,7 @@ img {
 .date {
   font-style: italic;
   color: $gray;
+  font-size: 0.9em;
 }
 
 // Specify the color of the selection
@@ -148,7 +145,7 @@ img {
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .masthead {
@@ -239,8 +236,13 @@ nav {
 //
 
 .posts > .post {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+    padding-bottom: 0.8em;
+
+    h1 {
+    font-size: 20px;
+    line-height: normal;
+    margin: 0px
+  }
 }
 
 .posts > .post:last-child {

@@ -97,9 +97,9 @@ To understand why you should use your GPU over your CPU, you should first unders
 
 <div class="centered-img">
 <img src="../images/tensorflow/channel-cnn.png" width="400px" alt="Channels in cnn" />
-<div class="legend">The source image is split into 3 images. One for each RGB layer. Then we convolve each Red, Blue, Green layer<br>
-                    with a filter and we obtain 3 activation maps (red, blue, green parallelepipeds in the image). One for the blue<br>
-                    layer, one for the red layer and one for the green layer. The convolution of each layer can be made in parallel.<br>
+<div class="legend">The source image is split into 3 images. One for each RGB layer. Then we convolve each Red, Blue, Green layer<
+                    with a filter and we obtain 3 activation maps (red, blue, green parallelepipeds in the image). One for the blue
+                    layer, one for the red layer and one for the green layer. The convolution of each layer can be made in parallel.
                     Moreover the convolution of each part of the image with a filter can also be made in parallel.</div>
 </div>
 
@@ -116,9 +116,9 @@ To better understand how TensorFlow works, we can represent any operation as a F
 
 <div class="centered-img">
 <img src="../images/tensorflow/tensorflow-graph.png" width="250px" alt="TensorFlow graph" />
-<div class="legend">Example of a simple Flow Graph that we can compute using TensorFlow. The Red circle represents the data<br>
-                    we feed to the Neural Network (Placeholder in TensorFlow). The Blue circles represent the parameters we want<br>
-                    to update during training (Variables in TensorFlow). The gray circles represent the mathematical operations<br>
+<div class="legend">Example of a simple Flow Graph that we can compute using TensorFlow. The Red circle represents the data
+                    we feed to the Neural Network (Placeholder in TensorFlow). The Blue circles represent the parameters we want
+                    to update during training (Variables in TensorFlow). The gray circles represent the mathematical operations
                     we can perform between tensors. The edges represent the tensors flowing through the graph.</div>
 </div>
 

@@ -27,13 +27,17 @@ comments: true
   <p>{{ page.update }}</p>
   <h1>{{ page.title }}</h1>
 
+  <div class="date">
+    {{ page.date | date: "%B %e, %Y" }} • Busa Victor
+  </div>
+
   <div class="entry">
+      
+
     {{ content }}
   </div>
 
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
+
 
   {% include disqus.html %}
 </article>
