@@ -13,8 +13,8 @@ deepen my knowledge, share it and keep a track of it. I am particularly interest
 **Reinforcement Learning** and **Natural Language Processing**.
 {: .text-justify}
 
-On my free time, I learn chinese (1:30 to 2 hours a day, every day since May 5<sup>th</sup> 2016) and I read
-lots of blog posts/books/research papers to sharpen my programming/machine learning skills. I also sharpen my algorithmic skills by solving programming challenges on [leetcode](https://leetcode.com/twice22/ "leetcode").
+On my free time, I learn chinese and I read lots of blog posts/books/research papers to sharpen my programming/machine learning skills.
+I also sharpen my algorithmic skills by solving programming challenges on [leetcode](https://leetcode.com/twice22/ "leetcode").
 {: .text-justify}
 
 Some extra courses I've followed:
