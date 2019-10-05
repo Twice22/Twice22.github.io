@@ -8,6 +8,7 @@
 @import "reset";
 @import "variables";
 @import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -20,7 +21,7 @@ html {
 
 body {
 	background: $white;
-  font: 18px/1.4 $helvetica;
+  font: 18px/1.4 $monserrat;
   color: $darkGray;
 }
 
@@ -295,6 +296,61 @@ footer {
 ##################
 */
 
+article {
+  .entry {
+    font-size: 1rem;
+    line-height: 1.625rem;
+  }
+}
+
+aside {
+  &.note {
+    box-sizing: content-box;
+    position: relative;
+    border-radius: 5px;
+    margin: 25px 0 20px 10px;
+    padding: 10px 10px 10px 30px;
+    min-height: auto;
+    background: #e6f4fa;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 0;
+      width: 30px;
+      height: 30px;
+      top: -10px;
+      left: -10px;
+      z-index: 1;
+      background: transparent url(../images/info.svg) 0 0;
+    }
+  }
+
+  &.question {
+    box-sizing: content-box;
+    position: relative;
+    border-radius: 5px;
+    margin: 25px 0 20px 10px;
+    padding: 10px 10px 10px 30px;
+    min-height: auto;
+    background: #F8CECC;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 0;
+      width: 30px;
+      height: 30px;
+      top: -10px;
+      left: -10px;
+      z-index: 1;
+      background: transparent url(../images/ques.svg) 0 0;
+    }
+  }
+}
+
 sup {
     vertical-align: super;
     font-size: smaller;
@@ -334,7 +390,7 @@ sup {
 
   .legend {
     font-size: 90%;
-    margin: 0 auto;
+    margin: 0 auto 50px auto;
     width: 80%;
   }
 
@@ -345,6 +401,15 @@ sup {
     box-shadow: 3px 3px rgba(0, 0, 0, 0.1); 
   }
 
+  img.bigger {
+    max-width: 140%;
+    margin-left: -20%;
+  }
+
+}
+
+video {
+  margin: 50px 0;
 }
 
 .center {
