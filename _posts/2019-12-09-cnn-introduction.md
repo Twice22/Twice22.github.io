@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A primer of Convolutional Neural Network
+title: A primer on Convolutional Neural Network
 ---
 
 In the previous article we have seen the `MCTS` algorithm. this algorithm and all its variations have been
