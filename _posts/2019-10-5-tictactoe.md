@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Brute Force and Tic Tac Toe
+title: │ In Laymans Terms │ Brute-Force and Tic Tac Toe
 ---
 
 Hey Guys! In this article we will see together how we can build an "Artificial Intelligence" that can play the **Tic Tac Toe** game and be unbeatable. That is to say,
@@ -227,5 +227,5 @@ for the **Tic Tac Toe** game because, in the **Tic Tac Toe** game **we used the 
 ### 4. Conclusion
 We have seen how a `brute force` algorithm works and how it can be helpful to create an unbeatable bot for the **Tic Tac Toe** game. This article is the first of 4 articles on how to
 solve board games using Artificial Intelligence. Here we have presented the basics but in the next articles we will present advanced techniques and we will finish by explaining in details
-how the AlphaGo Zero algorithm works. And trust me, even if we're not a machine learning engineer you'll be able to understand how such an Artificial Intelligence works at the end of this
-mini serie! So stay tuned because the next parts will be released soon.
+how the AlphaGo Zero algorithm works. And trust me, even if you're not a machine learning engineer you'll be able to understand how such an Artificial Intelligence works at the end of this
+mini serie! So stay tuned, laymen, because the next parts will be released soon.

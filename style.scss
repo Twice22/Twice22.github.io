@@ -409,7 +409,8 @@ sup {
 
   img.bigger {
     max-width: 140%;
-    margin-left: -20%;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 
 }

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A primer on Convolutional Neural Network
+title: │ In Laymans Terms │ Convolutional Neural Networks
 ---
 
 In the previous article we have seen the `MCTS` algorithm. this algorithm and all its variations have been
@@ -22,7 +22,7 @@ Each pixel is encoded with 3 values (red, blue, green). Each red, blue, green va
 
 a pixel is usually just a mix of 3 colors (Red, Blue, Green). You just need to tell how much of each color you want. As each Red, Blue, Green values are in the range $[0, 255]$, it means that the number of possible colors you can display on a normal screen is actually $256 \times 256 \times 256 = 16777216$.
 
-The <a href="#figI1">Figure I.1</a> shows a tensor representing an image of size $6 \times 10$
+<a href="#figI1">Figure I.1</a> shows a tensor representing an image of size $6 \times 10$
 
 <div class="centered-img">
   <img id="figI1" src="../images/alpha_go/image.svg" alt="Image encoding" />
@@ -565,8 +565,4 @@ of size $1000$ with the first fully-connected layer and then to go from this vec
 
 
 ## Conclusion
-We didn't enter too much into the mathematical details and I purposely haven't details everything. This is not the goal of this article and there is a ton of other resources available online that will teach you how a `Convolutional Neural Network` works. Here, I've just wanted to share with you the meaning of each component of a `Convolutional Neural Network` and why they make sense in order for you to understand how the `AlphaGo Zero` AI works. Indeed, I feel like, at school, we are taught lot's of things, but we often skipped the important part: **Why ?**. Why a convolution operation, why a max-pooling, why this, why that... With this article, I hope I could have helped you have a better understanding of **why**, and for the newbies, I hope that I could have given you a first intuition and understanding of how a `Convolutional Neural Network` works. It is really nothing fancy! Believe me, we are far from the `SkyNet` scenario from the Terminator movie!
-
-
-
-
+We didn't enter too much into the mathematical details and I purposely haven't details everything. This is not the goal of this article and there is a ton of other resources available online that will teach you how a `Convolutional Neural Network` works. Here, I've just wanted to share with you the meaning of each component of a `Convolutional Neural Network` and why they make sense in order for you to understand how the `AlphaGo Zero` AI works. Indeed, I feel like, at school, we are taught lot's of things, but we often skipped the important part: **Why ?**. Why a convolution operation, why a max-pooling, why this, why that... With this article, I hope I could have helped you have a better understanding of **why**, and for the newbies, I hope that I could have given you a first intuition and understanding of how a `Convolutional Neural Network` works. It is really nothing fancy! Believe me, we are far from the `SkyNet` scenario from the Terminator movie! So, as always, stay tuned for the next article, laymen!
